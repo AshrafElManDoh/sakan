@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/assets.dart';
 
 class CustomLogoandName extends StatelessWidget {
@@ -10,7 +11,7 @@ class CustomLogoandName extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundColor: Color(0xffF5683D),
+          backgroundColor: kPrimaryColor,
           radius: 38,
           child: Image.asset(
             Assets.logo,

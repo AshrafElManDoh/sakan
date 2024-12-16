@@ -7,8 +7,10 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent,),
-      body: SafeArea(child: SignUpBody()),
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+      ),
+      body: SignUpBody(),
     );
   }
 }

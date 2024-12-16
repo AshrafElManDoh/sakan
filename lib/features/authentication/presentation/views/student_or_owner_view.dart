@@ -6,8 +6,10 @@ class StudentOrOwnerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent,),
+    return Scaffold(
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+      ),
       body: SafeArea(child: StudentOrOwnerBody()),
     );
   }
