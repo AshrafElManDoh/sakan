@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_button.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_logo_and_name.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_otp.dart';
@@ -34,7 +36,9 @@ class OtpBody extends StatelessWidget {
             SizedBox(
               height: 42,
             ),
-            CustomButton(name: "Confirm"),
+            CustomButton(name: "Confirm",onTap: () {
+              GoRouter.of(context).pushReplacement(AppRouter.resetPasswordView);
+            },),
             SizedBox(
               height: 50,
             ),
