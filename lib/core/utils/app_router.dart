@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:sakan/features/authentication/presentation/views/forget_password_view.dart';
 import 'package:sakan/features/authentication/presentation/views/login_view.dart';
 import 'package:sakan/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:sakan/features/authentication/presentation/views/student_or_owner_view.dart';
@@ -9,6 +10,7 @@ abstract class AppRouter {
   static const introductionView = '/';
   static const signUpView = '/signUp';
   static const loginView = '/login';
+  static const forgetPasswordView = '/forgetPassword';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -26,6 +28,10 @@ abstract class AppRouter {
       GoRoute(
         path: loginView,
         builder: (context, state) => LoginView(),
+      ),
+      GoRoute(
+        path: forgetPasswordView,
+        builder: (context, state) => ForgetPasswordView(),
       ),
     ],
   );
