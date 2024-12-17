@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_button.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_logo_and_name.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_text_field.dart';
@@ -30,7 +32,9 @@ class ForgetPasswordBody extends StatelessWidget {
             SizedBox(
               height: 42,
             ),
-            CustomButton(name: "Send code"),
+            CustomButton(name: "Send code",onTap: () {
+              GoRouter.of(context).push(AppRouter.otpView);
+            },),
             SizedBox(
               height: 50,
             ),
