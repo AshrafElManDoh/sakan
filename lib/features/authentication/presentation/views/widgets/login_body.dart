@@ -4,6 +4,7 @@ import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_break_line.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_button.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_logo_and_name.dart';
+import 'package:sakan/features/authentication/presentation/views/widgets/custom_password_text_field.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_social.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_text_field.dart';
 
@@ -12,7 +13,9 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passController = TextEditingController();
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -30,10 +33,19 @@ class LoginBody extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            CustomTextField(name: "Enter Email"),
+            CustomTextField(
+              name: "Enter Email",
+              isEmail: true,
+              textEditingController: emailController,
+            ),
             SizedBox(
               height: 16,
-            ),CustomTextField(name: "Enter Password"),
+            ),
+            CustomPasswordTextField(
+              name: "Enter Password",
+              textEditingController: passController,
+              isLogin: true,
+            ),
             SizedBox(
               height: 16,
             ),
@@ -51,21 +63,28 @@ class LoginBody extends StatelessWidget {
                   child: Text(
                     "Click here",
                     style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14,
-                      color: Colors.black
-                    ),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: Colors.black),
                   ),
                 )
               ],
             ),
-            SizedBox(height: 42,),
+            SizedBox(
+              height: 42,
+            ),
             CustomButton(name: "Login"),
-            SizedBox(height: 24,),
+            SizedBox(
+              height: 24,
+            ),
             CustomBreakLine(),
-            SizedBox(height: 36,),
+            SizedBox(
+              height: 36,
+            ),
             CustomSocial(),
-            SizedBox(height: 70,)
+            SizedBox(
+              height: 70,
+            )
           ],
         ),
       ),

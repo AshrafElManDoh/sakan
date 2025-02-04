@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_button.dart';
+import 'package:sakan/features/authentication/presentation/views/widgets/custom_confirm_pass_text_field.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_logo_and_name.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_password_text_field.dart';
 
@@ -8,6 +9,8 @@ class ResetPasswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController passController = TextEditingController();
+    TextEditingController confirmPassController = TextEditingController();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
@@ -26,11 +29,19 @@ class ResetPasswordBody extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            CustomPasswordTextField(name: "Enter Password"),
+            CustomPasswordTextField(
+              name: "Enter Password",
+              textEditingController: passController,
+              isLogin: false,
+            ),
             SizedBox(
               height: 16,
             ),
-            CustomPasswordTextField(name: "Confirm Password"),
+            CustomConfirmPassTextField(
+              name: "Confirm Password",
+              textEditingController: confirmPassController,
+              passController: passController,
+            ),
             SizedBox(
               height: 16,
             ),

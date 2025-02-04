@@ -10,6 +10,7 @@ class ForgetPasswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
@@ -28,13 +29,20 @@ class ForgetPasswordBody extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            CustomTextField(name: "Enter Email"),
+            CustomTextField(
+              name: "Enter Email",
+              isEmail: true,
+              textEditingController: emailController,
+            ),
             SizedBox(
               height: 42,
             ),
-            CustomButton(name: "Send code",onTap: () {
-              GoRouter.of(context).push(AppRouter.otpView);
-            },),
+            CustomButton(
+              name: "Send code",
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.otpView);
+              },
+            ),
             SizedBox(
               height: 50,
             ),

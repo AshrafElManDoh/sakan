@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:sakan/constants.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.name,
-    required this.isEmail,
-    required this.textEditingController,
-  });
+class CustomConfirmPassTextField extends StatefulWidget {
+  const CustomConfirmPassTextField(
+      {super.key, required this.name, required this.textEditingController,  required this.passController});
   final String name;
-  final bool isEmail;
   final TextEditingController textEditingController;
+  final TextEditingController passController;
+  
+  @override
+  State<CustomConfirmPassTextField> createState() =>
+      _CustomConfirmPassTextFieldState();
+}
+
+class _CustomConfirmPassTextFieldState extends State<CustomConfirmPassTextField> {
+  bool isobscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          name,
+          widget.name,
           style: TextStyle(
             color: kcolorOfTextField,
             fontSize: 12,
@@ -27,23 +32,25 @@ class CustomTextField extends StatelessWidget {
           height: 6,
         ),
         TextFormField(
-          controller: textEditingController,
+          controller: widget.textEditingController,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
-            if (isEmail) {
-              final bool emailValid =
-                  RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
-                      .hasMatch(value!);
-              if (value.isEmpty) {
-                return "E-mail must not be empty";
-              }
-              if (emailValid == false) {
-                return "Invalid email format!";
-              }
+            if(widget.textEditingController.text != widget.passController.text){
+              return 'password and confirm password not match';
             }
             return null;
           },
+          obscureText: isobscure,
           decoration: InputDecoration(
+            suffixIcon: IconButton(
+              onPressed: () {
+                isobscure = !isobscure;
+                setState(() {});
+              },
+              icon: isobscure
+                  ? Icon(Icons.visibility)
+                  : Icon(Icons.visibility_off),
+            ),
             filled: true,
             fillColor: Colors.white,
             border: OutlineInputBorder(
