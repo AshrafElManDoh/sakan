@@ -17,12 +17,19 @@ class StudentOrOwnerBody extends StatelessWidget {
           SizedBox(
             height: 75,
           ),
-          CustomConatinerForUser(icon: FontAwesomeIcons.userGraduate,userName: "Student",),
-          SizedBox(height: 24,),
-          CustomConatinerForUser(icon: FontAwesomeIcons.userGroup, userName: "Owner")
+          CustomConatinerForUser(
+            icon: FontAwesomeIcons.userGraduate,
+            userName: "Student",
+          ),
+          SizedBox(
+            height: 24,
+          ),
+          CustomConatinerForUser(
+            icon: FontAwesomeIcons.userGroup,
+            userName: "Owner",
+          )
         ],
       ),
     );
   }
 }
-
