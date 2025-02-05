@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:sakan/core/errors/failure.dart';
@@ -24,6 +26,7 @@ class AuthRepoImp implements AuthRepo{
     };
     try{
       var response = await apiService.post(endPoint: "Register", data: data);
+      log(response.toString());
       String msg=response.toString();
       return right(msg) ;
     }

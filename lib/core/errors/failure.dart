@@ -19,8 +19,9 @@ class ServerFailure extends Failure {
       case DioExceptionType.badCertificate:
         return ServerFailure(errmsg: "Bad certificate ,please try again!");
       case DioExceptionType.badResponse:
+        // return ServerFailure(errmsg: "Bad Response");
         return ServerFailure.fromResponse(
-            dioException.response!.statusCode!, dioException.error);
+            dioException.response!.statusCode!, dioException.response!.data);
       case DioExceptionType.cancel:
         return ServerFailure(errmsg: "Your request canceled");
       case DioExceptionType.connectionError:
@@ -36,7 +37,12 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(errmsg: response["error"]["message"]);
+      if (response is Map) {
+        return ServerFailure(errmsg: response["description"]);
+      } else {
+        // log(response.toString());
+        return ServerFailure(errmsg: response.toString());
+      }
     } else if (statusCode == 404) {
       return ServerFailure(errmsg: "Your request not found!");
     } else if (statusCode == 500) {

@@ -5,7 +5,7 @@ class ApiService {
   final Dio _dio;
   ApiService(this._dio);
 
-  Future<Map<String, dynamic>> post({
+  Future<dynamic> post({
     required String endPoint,
     required Object data,
   }) async {
@@ -18,7 +18,6 @@ class ApiService {
         },
       ),
     );
-
     return response.data;
   }
 }

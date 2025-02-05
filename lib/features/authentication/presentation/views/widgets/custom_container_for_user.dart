@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sakan/core/utils/app_router.dart';
+import 'package:sakan/features/authentication/presentation/views_model/register_cubit/register_cubit.dart';
 
 class CustomConatinerForUser extends StatelessWidget {
   const CustomConatinerForUser(
@@ -12,6 +14,12 @@ class CustomConatinerForUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        if(userName == "Owner")
+        {
+          BlocProvider.of<RegisterCubit>(context).role ="Owners";
+        }else{
+          BlocProvider.of<RegisterCubit>(context).role ="Students";
+        }
         GoRouter.of(context).push(AppRouter.signUpView);
       },
       child: Container(
