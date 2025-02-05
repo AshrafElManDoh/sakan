@@ -9,8 +9,15 @@ class ApiService {
     required String endPoint,
     required Object data,
   }) async {
-    
-    var response = await _dio.post('$_baseUrl$endPoint',data: data);
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: data,
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      ),
+    );
 
     return response.data;
   }
