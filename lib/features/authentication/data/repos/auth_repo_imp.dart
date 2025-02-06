@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:sakan/core/errors/failure.dart';
@@ -39,16 +38,33 @@ class AuthRepoImp implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Map<String,dynamic>>> login(
-      {required String email, required String password})async {
+  Future<Either<Failure, Map<String, dynamic>>> login(
+      {required String email, required String password}) async {
     Map<String, String> data = {
       "email": email,
       "password": password,
-    };try{
-      var response=await apiService.post(endPoint: "Login", data: data);
+    };
+    try {
+      var response = await apiService.post(endPoint: "Login", data: data);
       return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErrors(e));
+      } else {
+        return left(ServerFailure(errmsg: e.toString()));
+      }
     }
-    catch(e){
+  }
+
+  @override
+  Future<Either<Failure, String>> forgetPassword(
+      {required String email}) async {
+    Map<String, String> data = {"email": email};
+    try {
+      var response =
+          await apiService.post(endPoint: "ForgotPassword", data: data);
+      return right(response.toString());
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioErrors(e));
       } else {
