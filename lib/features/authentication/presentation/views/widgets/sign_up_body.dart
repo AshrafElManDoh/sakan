@@ -24,9 +24,7 @@ class SignUpBody extends StatelessWidget {
     TextEditingController passController = TextEditingController();
     TextEditingController confirmPassController = TextEditingController();
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Form(
+    return Form(
         key: formKey,
         child: BlocConsumer<RegisterCubit, RegisterState>(
           listener: (context, state) {
@@ -47,109 +45,112 @@ class SignUpBody extends StatelessWidget {
           builder: (context, state) {
             return ModalProgressHUD(
               inAsyncCall: state is RegisterLoading,
-              child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomLogoandName(),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      "Sign up",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                      name: "Enter Name",
-                      isEmail: false,
-                      textEditingController: nameController,
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                      name: "Enter Email",
-                      isEmail: true,
-                      textEditingController: emailController,
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    CustomPasswordTextField(
-                      name: "Enter Password",
-                      textEditingController: passController,
-                      isLogin: false,
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    CustomConfirmPassTextField(
-                      name: "Confirm Password",
-                      textEditingController: confirmPassController,
-                      passController: passController,
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Already have an account?',
-                          style: TextStyle(
-                              color: Color(0xff4F545A),
-                              fontWeight: FontWeight.w500),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            GoRouter.of(context).push(AppRouter.loginView);
-                          },
-                          child: Text(
-                            "Login",
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomLogoandName(),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        "Sign up",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      CustomTextField(
+                        name: "Enter Name",
+                        isEmail: false,
+                        textEditingController: nameController,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      CustomTextField(
+                        name: "Enter Email",
+                        isEmail: true,
+                        textEditingController: emailController,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      CustomPasswordTextField(
+                        name: "Enter Password",
+                        textEditingController: passController,
+                        isLogin: false,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      CustomConfirmPassTextField(
+                        name: "Confirm Password",
+                        textEditingController: confirmPassController,
+                        passController: passController,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Already have an account?',
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14,
-                                color: Colors.black),
+                                color: Color(0xff4F545A),
+                                fontWeight: FontWeight.w500),
                           ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 42,
-                    ),
-                    CustomButton(
-                      name: "Sign up",
-                      onTap: () async {
-                        if (formKey.currentState!.validate()) {
-                          await BlocProvider.of<RegisterCubit>(context).register(
-                              name: nameController.text,
-                              email: emailController.text,
-                              password: passController.text,
-                              confirm_Password: confirmPassController.text);
-                        }
-                      },
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    CustomBreakLine(),
-                    SizedBox(
-                      height: 36,
-                    ),
-                    CustomSocial(),
-                    SizedBox(
-                      height: 70,
-                    )
-                  ],
+                          TextButton(
+                            onPressed: () {
+                              GoRouter.of(context).push(AppRouter.loginView);
+                            },
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                  color: Colors.black),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 42,
+                      ),
+                      CustomButton(
+                        name: "Sign up",
+                        onTap: () async {
+                          if (formKey.currentState!.validate()) {
+                            await BlocProvider.of<RegisterCubit>(context).register(
+                                name: nameController.text,
+                                email: emailController.text,
+                                password: passController.text,
+                                confirm_Password: confirmPassController.text);
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      CustomBreakLine(),
+                      SizedBox(
+                        height: 36,
+                      ),
+                      CustomSocial(),
+                      SizedBox(
+                        height: 70,
+                      )
+                    ],
+                  ),
                 ),
               ),
             );
           },
         ),
-      ),
-    );
+      )
+    ;
   }
 }
