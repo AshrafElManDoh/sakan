@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_button.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_confirm_pass_text_field.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_logo_and_name.dart';
+import 'package:sakan/features/authentication/presentation/views/widgets/custom_otp.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_password_text_field.dart';
 
 class ResetPasswordBody extends StatelessWidget {
-  const ResetPasswordBody({super.key});
+  const ResetPasswordBody({super.key, required this.email});
+
+  final String email ;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,20 @@ class ResetPasswordBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomLogoandName(),
+            const SizedBox(
+              height: 16,
+            ),
+            Text(
+              "Write code",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            CustomOtp(),
+            SizedBox(
+              height: 16,
+            ),
             const SizedBox(
               height: 16,
             ),
@@ -48,7 +65,7 @@ class ResetPasswordBody extends StatelessWidget {
             SizedBox(
               height: 42,
             ),
-            CustomButton(name: "Sign up"),
+            CustomButton(name: "Confirm"),
             SizedBox(
               height: 70,
             )

@@ -45,7 +45,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: resetPasswordView,
-        builder: (context, state) => ResetPasswordView(),
+        builder: (context, state) => ResetPasswordView(
+          email: state.extra as String,
+        ),
       ),
       GoRoute(
         path: homeView,
