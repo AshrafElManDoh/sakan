@@ -6,6 +6,7 @@ import 'package:sakan/core/utils/service_locator.dart';
 import 'package:sakan/features/authentication/data/repos/auth_repo_imp.dart';
 import 'package:sakan/features/authentication/presentation/views_model/forget_password_cubit/forget_password_cubit.dart';
 import 'package:sakan/features/authentication/presentation/views_model/register_cubit/register_cubit.dart';
+import 'package:sakan/features/authentication/presentation/views_model/reset_password_cubit/reset_password_cubit.dart';
 
 void main() {
   setupServiceLocator();
@@ -26,6 +27,10 @@ class Sakan extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ForgetPasswordCubit(
+            getIt.get<AuthRepoImp>(),
+          ),
+        ),BlocProvider(
+          create: (context) => ResetPasswordCubit(
             getIt.get<AuthRepoImp>(),
           ),
         ),

@@ -11,6 +11,7 @@ class OtpBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController otpController = TextEditingController();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
@@ -29,7 +30,7 @@ class OtpBody extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            CustomOtp(),
+            CustomOtp(otpController: otpController,),
             SizedBox(
               height: 16,
             ),

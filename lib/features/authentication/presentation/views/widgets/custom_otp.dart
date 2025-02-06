@@ -3,7 +3,8 @@ import 'package:pinput/pinput.dart';
 import 'package:sakan/constants.dart';
 
 class CustomOtp extends StatelessWidget {
-  const CustomOtp({super.key});
+  const CustomOtp({super.key, required this.otpController});
+  final TextEditingController otpController ;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class CustomOtp extends StatelessWidget {
       ),
     );
     return Pinput(
+      controller: otpController,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       length: 5,
       defaultPinTheme: primaryPinTheme,
