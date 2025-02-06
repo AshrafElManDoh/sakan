@@ -38,7 +38,8 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       if (response is Map) {
-        return ServerFailure(errmsg: response["description"]);
+        return ServerFailure(
+            errmsg: response["description"] ?? "Invalid E-mail or password");
       } else {
         // log(response.toString());
         return ServerFailure(errmsg: response.toString());
