@@ -73,7 +73,9 @@ class LoginBody extends StatelessWidget {
             SizedBox(
               height: 42,
             ),
-            CustomButton(name: "Login"),
+            CustomButton(name: "Login",onTap: () {
+              GoRouter.of(context).go(AppRouter.homeView);
+            },),
             SizedBox(
               height: 24,
             ),
