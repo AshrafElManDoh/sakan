@@ -29,19 +29,21 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: signUpView,
-        builder: (context, state) => SignUpView(),
+        builder: (context, state) => SignUpView(
+          role: state.extra as String,
+        ),
       ),
       GoRoute(
         path: loginView,
-        builder: (context, state) => LoginView(),
+        builder: (context, state) => const LoginView(),
       ),
       GoRoute(
         path: forgetPasswordView,
-        builder: (context, state) => ForgetPasswordView(),
+        builder: (context, state) =>const  ForgetPasswordView(),
       ),
       GoRoute(
         path: otpView,
-        builder: (context, state) => OtpView(),
+        builder: (context, state) =>const  OtpView(),
       ),
       GoRoute(
         path: resetPasswordView,
@@ -51,7 +53,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: homeView,
-        builder: (context, state) => HomeView(),
+        builder: (context, state) =>const HomeView(),
       )
     ],
   );

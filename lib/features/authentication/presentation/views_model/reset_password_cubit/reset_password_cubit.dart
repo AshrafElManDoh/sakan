@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sakan/features/authentication/data/repos/auth_repo.dart';
 
 part 'reset_password_state.dart';
@@ -7,6 +7,9 @@ part 'reset_password_state.dart';
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   ResetPasswordCubit(this.authRepo) : super(ResetPasswordInitial());
   final AuthRepo authRepo;
+  TextEditingController newpassController = TextEditingController();
+  TextEditingController confirmPassController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
 
   Future<void> resetPassword(
       {required String email,

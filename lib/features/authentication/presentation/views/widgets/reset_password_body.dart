@@ -19,9 +19,6 @@ class ResetPasswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController newpassController = TextEditingController();
-    TextEditingController confirmPassController = TextEditingController();
-    TextEditingController otpController = TextEditingController();
     return BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
       listener: (context, state) {
         if (state is ResetPasswordLoading) {
@@ -60,7 +57,8 @@ class ResetPasswordBody extends StatelessWidget {
                     height: 16,
                   ),
                   CustomOtp(
-                    otpController: otpController,
+                    otpController: BlocProvider.of<ResetPasswordCubit>(context)
+                        .otpController,
                   ),
                   SizedBox(
                     height: 16,
@@ -77,7 +75,9 @@ class ResetPasswordBody extends StatelessWidget {
                   ),
                   CustomPasswordTextField(
                     name: "Enter Password",
-                    textEditingController: newpassController,
+                    textEditingController:
+                        BlocProvider.of<ResetPasswordCubit>(context)
+                            .newpassController,
                     isLogin: false,
                   ),
                   SizedBox(
@@ -85,8 +85,11 @@ class ResetPasswordBody extends StatelessWidget {
                   ),
                   CustomConfirmPassTextField(
                     name: "Confirm Password",
-                    textEditingController: confirmPassController,
-                    passController: newpassController,
+                    textEditingController:
+                        BlocProvider.of<ResetPasswordCubit>(context)
+                            .confirmPassController,
+                    passController: BlocProvider.of<ResetPasswordCubit>(context)
+                        .newpassController,
                   ),
                   SizedBox(
                     height: 16,
@@ -99,10 +102,20 @@ class ResetPasswordBody extends StatelessWidget {
                     onTap: () {
                       BlocProvider.of<ResetPasswordCubit>(context)
                           .resetPassword(
-                              email: email,
-                              verificationCode: otpController.text,
-                              newPassword: newpassController.text,
-                              confirmPassword: confirmPassController.text);
+                        email: email,
+                        verificationCode:
+                            BlocProvider.of<ResetPasswordCubit>(context)
+                                .otpController
+                                .text,
+                        newPassword:
+                            BlocProvider.of<ResetPasswordCubit>(context)
+                                .newpassController
+                                .text,
+                        confirmPassword:
+                            BlocProvider.of<ResetPasswordCubit>(context)
+                                .confirmPassController
+                                .text,
+                      );
                     },
                   ),
                   SizedBox(

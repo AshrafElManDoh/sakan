@@ -15,7 +15,6 @@ class ForgetPasswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
       listener: (context, state) {
         if (state is ForgetPasswordLoading) {
@@ -26,7 +25,9 @@ class ForgetPasswordBody extends StatelessWidget {
           );
           GoRouter.of(context).pushReplacement(
             AppRouter.resetPasswordView,
-            extra: emailController.text,
+            extra: BlocProvider.of<ForgetPasswordCubit>(context)
+                .emailController
+                .text,
           );
         } else if (state is ForgetPasswordFailure) {
           showTopSnackBar(
@@ -59,7 +60,9 @@ class ForgetPasswordBody extends StatelessWidget {
                   CustomTextField(
                     name: "Enter Email",
                     isEmail: true,
-                    textEditingController: emailController,
+                    textEditingController:
+                        BlocProvider.of<ForgetPasswordCubit>(context)
+                            .emailController,
                   ),
                   SizedBox(
                     height: 42,
@@ -68,7 +71,11 @@ class ForgetPasswordBody extends StatelessWidget {
                     name: "Send code",
                     onTap: () {
                       BlocProvider.of<ForgetPasswordCubit>(context)
-                          .forgetPassword(email: emailController.text);
+                          .forgetPassword(
+                              email:
+                                  BlocProvider.of<ForgetPasswordCubit>(context)
+                                      .emailController
+                                      .text);
                     },
                   ),
                   SizedBox(

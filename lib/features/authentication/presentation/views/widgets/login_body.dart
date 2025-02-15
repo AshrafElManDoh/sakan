@@ -18,8 +18,6 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passController = TextEditingController();
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginLoading) {
@@ -60,14 +58,16 @@ class LoginBody extends StatelessWidget {
                   CustomTextField(
                     name: "Enter Email",
                     isEmail: true,
-                    textEditingController: emailController,
+                    textEditingController:
+                        BlocProvider.of<LoginCubit>(context).emailController,
                   ),
                   SizedBox(
                     height: 16,
                   ),
                   CustomPasswordTextField(
                     name: "Enter Password",
-                    textEditingController: passController,
+                    textEditingController:
+                        BlocProvider.of<LoginCubit>(context).passController,
                     isLogin: true,
                   ),
                   SizedBox(
@@ -103,8 +103,12 @@ class LoginBody extends StatelessWidget {
                     name: "Login",
                     onTap: () {
                       BlocProvider.of<LoginCubit>(context).login(
-                        email: emailController.text,
-                        password: passController.text,
+                        email: BlocProvider.of<LoginCubit>(context)
+                            .emailController
+                            .text,
+                        password: BlocProvider.of<LoginCubit>(context)
+                            .passController
+                            .text,
                       );
                     },
                   ),

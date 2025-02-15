@@ -15,142 +15,162 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SignUpBody extends StatelessWidget {
-  const SignUpBody({super.key});
+  const SignUpBody({super.key, required this.role});
+  final String role;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passController = TextEditingController();
-    TextEditingController confirmPassController = TextEditingController();
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Form(
-        key: formKey,
-        child: BlocConsumer<RegisterCubit, RegisterState>(
-          listener: (context, state) {
-              if (state is RegisterLoading) {
-              } else if (state is RegisterSuccess) {
-                showTopSnackBar(
-                  Overlay.of(context),
-                  CustomSnackBar.success(message: state.msg),
-                );
-                GoRouter.of(context).push(AppRouter.loginView);
-              } else if (state is RegisterFailure) {
-                showTopSnackBar(
-                  Overlay.of(context),
-                  CustomSnackBar.error(message: state.errmsg),
-                );
-              }
-            },
-          builder: (context, state) {
-            return ModalProgressHUD(
-              inAsyncCall: state is RegisterLoading,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomLogoandName(),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        "Sign up",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      CustomTextField(
-                        name: "Enter Name",
-                        isEmail: false,
-                        textEditingController: nameController,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      CustomTextField(
-                        name: "Enter Email",
-                        isEmail: true,
-                        textEditingController: emailController,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      CustomPasswordTextField(
-                        name: "Enter Password",
-                        textEditingController: passController,
-                        isLogin: false,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      CustomConfirmPassTextField(
-                        name: "Confirm Password",
-                        textEditingController: confirmPassController,
-                        passController: passController,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Already have an account?',
+      key: BlocProvider.of<RegisterCubit>(context).formKey,
+      child: BlocConsumer<RegisterCubit, RegisterState>(
+        listener: (context, state) {
+          if (state is RegisterLoading) {
+          } else if (state is RegisterSuccess) {
+            showTopSnackBar(
+              Overlay.of(context),
+              CustomSnackBar.success(message: state.msg),
+            );
+            GoRouter.of(context).push(AppRouter.loginView);
+          } else if (state is RegisterFailure) {
+            showTopSnackBar(
+              Overlay.of(context),
+              CustomSnackBar.error(message: state.errmsg),
+            );
+          }
+        },
+        builder: (context, state) {
+          return ModalProgressHUD(
+            inAsyncCall: state is RegisterLoading,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomLogoandName(),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Sign up",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                      name: "Enter Name",
+                      isEmail: false,
+                      textEditingController:
+                          BlocProvider.of<RegisterCubit>(context)
+                              .nameController,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                      name: "Enter Email",
+                      isEmail: true,
+                      textEditingController:
+                          BlocProvider.of<RegisterCubit>(context)
+                              .emailController,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    CustomPasswordTextField(
+                      name: "Enter Password",
+                      textEditingController:
+                          BlocProvider.of<RegisterCubit>(context)
+                              .passController,
+                      isLogin: false,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    CustomConfirmPassTextField(
+                      name: "Confirm Password",
+                      textEditingController:
+                          BlocProvider.of<RegisterCubit>(context)
+                              .confirmPassController,
+                      passController: BlocProvider.of<RegisterCubit>(context)
+                          .passController,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Already have an account?',
+                          style: TextStyle(
+                              color: Color(0xff4F545A),
+                              fontWeight: FontWeight.w500),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRouter.loginView);
+                          },
+                          child: Text(
+                            "Login",
                             style: TextStyle(
-                                color: Color(0xff4F545A),
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: Colors.black),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              GoRouter.of(context).push(AppRouter.loginView);
-                            },
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14,
-                                  color: Colors.black),
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 42,
-                      ),
-                      CustomButton(
-                        name: "Sign up",
-                        onTap: () async {
-                          if (formKey.currentState!.validate()) {
-                            await BlocProvider.of<RegisterCubit>(context).register(
-                                name: nameController.text,
-                                email: emailController.text,
-                                password: passController.text,
-                                confirm_Password: confirmPassController.text);
-                          }
-                        },
-                      ),
-                      SizedBox(
-                        height: 24,
-                      ),
-                      CustomBreakLine(),
-                      SizedBox(
-                        height: 36,
-                      ),
-                      CustomSocial(),
-                      SizedBox(
-                        height: 70,
-                      )
-                    ],
-                  ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 42,
+                    ),
+                    CustomButton(
+                      name: "Sign up",
+                      onTap: () async {
+                        if (BlocProvider.of<RegisterCubit>(context)
+                            .formKey
+                            .currentState!
+                            .validate()) {
+                          await BlocProvider.of<RegisterCubit>(context)
+                              .register(
+                            name: BlocProvider.of<RegisterCubit>(context)
+                                .nameController
+                                .text,
+                            email: BlocProvider.of<RegisterCubit>(context)
+                                .emailController
+                                .text,
+                            password: BlocProvider.of<RegisterCubit>(context)
+                                .passController
+                                .text,
+                            confirm_Password:
+                                BlocProvider.of<RegisterCubit>(context)
+                                    .confirmPassController
+                                    .text,
+                            role: role,
+                          );
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    CustomBreakLine(),
+                    SizedBox(
+                      height: 36,
+                    ),
+                    CustomSocial(),
+                    SizedBox(
+                      height: 70,
+                    )
+                  ],
                 ),
               ),
-            );
-          },
-        ),
-      )
-    ;
+            ),
+          );
+        },
+      ),
+    );
   }
 }
