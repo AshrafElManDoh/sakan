@@ -10,13 +10,16 @@ import 'package:sakan/features/introduction/presentation/views/introduction_view
 
 abstract class AppRouter {
   static const studentOrOwner = '/studentOrOwner';
-  static const introductionView = '/';
+  // static const introductionView = '/';
+  static const introductionView = '/introductionView';
   static const signUpView = '/signUp';
   static const loginView = '/login';
   static const forgetPasswordView = '/forgetPassword';
   static const otpView = '/otp';
   static const resetPasswordView = '/resetPassword';
-  static const homeView = '/home';
+  static const chooseCityView = '/chooseCityView';
+  // static const homeView = '/home';
+  static const homeView = '/';
   static final router = GoRouter(
     routes: [
       GoRoute(
