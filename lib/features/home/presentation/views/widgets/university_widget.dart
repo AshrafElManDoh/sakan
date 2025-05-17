@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 
 class UniversityWidget extends StatelessWidget {
@@ -8,7 +10,7 @@ class UniversityWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
+        GoRouter.of(context).go(AppRouter.homeView);
       },
       child: Container(
         decoration: BoxDecoration(

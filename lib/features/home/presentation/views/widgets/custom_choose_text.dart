@@ -10,7 +10,7 @@ class CustomChooseText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Choose Your Destination City",
+      text,
       style: AppStyles.stylesSemiBold30,
     );
   }

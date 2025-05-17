@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  const CustomBottomNavigationBar({super.key});
+  const CustomBottomNavigationBar({super.key,required this.onTap, required this.currentIndex});
+  final void Function(int)? onTap ;
+  final int currentIndex ;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: BottomNavigationBar(
+            onTap: onTap,
+            currentIndex: currentIndex,
             backgroundColor: Colors.white,
             elevation: 0,
             unselectedItemColor: Color(0xff7D7F88),

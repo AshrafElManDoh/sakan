@@ -10,4 +10,14 @@ abstract class AppStyles {
     fontSize: 18,
     fontWeight: FontWeight.w500
   );
+  static TextStyle stylesBold16=TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    // color: Color(0xff255685)
+  );
+  static TextStyle stylesRegular12=TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: Colors.grey
+  );
 }
