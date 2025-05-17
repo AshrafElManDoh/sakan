@@ -9,6 +9,7 @@ import 'package:sakan/features/home/presentation/views/choose_city_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_university_view.dart';
 import 'package:sakan/features/home/presentation/views/home_view.dart';
 import 'package:sakan/features/introduction/presentation/views/introduction_view.dart';
+import 'package:sakan/features/search/presentation/views/search_view.dart';
 
 abstract class AppRouter {
   static const studentOrOwner = '/studentOrOwner';
@@ -19,10 +20,12 @@ abstract class AppRouter {
   static const forgetPasswordView = '/forgetPassword';
   static const otpView = '/otp';
   static const resetPasswordView = '/resetPassword';
-  // static const chooseCityView = '/chooseCityView';
-  static const chooseCityView = '/';
+  static const chooseCityView = '/chooseCityView';
+  // static const chooseCityView = '/';
   static const chooseUniverstiyView = '/chooseUniverstiyView';
   static const homeView = '/home';
+  static const searchView = '/';
+  // static const searchView = '/search';
   
   static final router = GoRouter(
     routes: [
@@ -69,7 +72,11 @@ abstract class AppRouter {
       GoRoute(
         path: homeView,
         builder: (context, state) =>const HomeView(),
-      )
+      ),
+      GoRoute(
+        path: searchView,
+        builder: (context, state) =>const SearchView(),
+      ),
     ],
   );
 }
