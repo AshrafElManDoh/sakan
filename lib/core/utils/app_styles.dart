@@ -12,6 +12,11 @@ abstract class AppStyles {
     fontWeight: FontWeight.w600,
     color: Color(0xff344054)
   );
+  static TextStyle stylesSemiBold13 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w600,
+    color: Color(0xff344054)
+  );
   static TextStyle stylesSemiBold16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
