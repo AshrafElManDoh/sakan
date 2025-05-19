@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/features/home/presentation/views/widgets/location_text.dart';
 
 class ApartmentWidget extends StatelessWidget {
   const ApartmentWidget({super.key});
@@ -8,7 +11,7 @@ class ApartmentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
+        GoRouter.of(context).push(AppRouter.apartmentDetailsView);
       },
       child: Card(
         color: Colors.white,
@@ -43,26 +46,15 @@ class ApartmentWidget extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
-      
+
             //title & subtitle
-      
+
             Text(
               "302 North Plam Drive",
               style: AppStyles.stylesBold16,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.location_on,
-                  size: 14,
-                  color: Colors.grey,
-                ),
-                Text(
-                  "Beverly Hills, CA 90210",
-                  style: AppStyles.stylesRegular12,
-                ),
-              ],
+            LocationText(
+              locationAddress: "Beverly Hills, CA 90210",
             ),
             SizedBox(
               height: 10,
@@ -85,7 +77,7 @@ class ApartmentWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-      
+
             // Features Row 2
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -97,13 +89,13 @@ class ApartmentWidget extends StatelessWidget {
                 ],
               ),
             ),
-      
+
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Divider(),
             ),
-      
+
             // Owner + Time
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -126,11 +118,13 @@ class ApartmentWidget extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(
                   bottom: Radius.circular(16),
                 ),
-              ),child: Center(
+              ),
+              child: Center(
                 child: Text(
-                    '\$300/month',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
+                  '\$300/month',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
               ),
             )
           ],

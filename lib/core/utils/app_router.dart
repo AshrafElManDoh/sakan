@@ -5,6 +5,7 @@ import 'package:sakan/features/authentication/presentation/views/otp_view.dart';
 import 'package:sakan/features/authentication/presentation/views/reset_password_view.dart';
 import 'package:sakan/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:sakan/features/authentication/presentation/views/student_or_owner_view.dart';
+import 'package:sakan/features/home/presentation/views/apartment_details_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_city_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_university_view.dart';
 import 'package:sakan/features/home/presentation/views/home_view.dart';
@@ -24,11 +25,13 @@ abstract class AppRouter {
   static const chooseCityView = '/chooseCityView';
   // static const chooseCityView = '/';
   static const chooseUniverstiyView = '/chooseUniverstiyView';
-  static const homeView = '/home';
+  // static const homeView = '/home';
+  static const homeView = '/';
   // static const searchView = '/';
   static const searchView = '/search';
-  // static const profileView = '/profile';
-  static const profileView = '/';
+  static const profileView = '/profile';
+  // static const profileView = '/';
+  static const apartmentDetailsView = '/apartmentDetails';
   
   static final router = GoRouter(
     routes: [
@@ -83,6 +86,10 @@ abstract class AppRouter {
       GoRoute(
         path: profileView,
         builder: (context, state) =>const ProfileView(),
+      ),
+      GoRoute(
+        path: apartmentDetailsView,
+        builder: (context, state) =>const ApartmentDetailsView(),
       ),
     ],
   );
