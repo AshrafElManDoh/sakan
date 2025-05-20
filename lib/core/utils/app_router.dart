@@ -9,6 +9,7 @@ import 'package:sakan/features/home/presentation/views/apartment_details_view.da
 import 'package:sakan/features/home/presentation/views/choose_city_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_university_view.dart';
 import 'package:sakan/features/home/presentation/views/home_view.dart';
+import 'package:sakan/features/home/presentation/views/room_details_view.dart';
 import 'package:sakan/features/introduction/presentation/views/introduction_view.dart';
 import 'package:sakan/features/profile/presentation/views/profile_view.dart';
 import 'package:sakan/features/search/presentation/views/search_view.dart';
@@ -32,6 +33,7 @@ abstract class AppRouter {
   static const profileView = '/profile';
   // static const profileView = '/';
   static const apartmentDetailsView = '/apartmentDetails';
+  static const roomDetailsView = '/roomDetailsView';
   
   static final router = GoRouter(
     routes: [
@@ -90,6 +92,10 @@ abstract class AppRouter {
       GoRoute(
         path: apartmentDetailsView,
         builder: (context, state) =>const ApartmentDetailsView(),
+      ),
+      GoRoute(
+        path: roomDetailsView,
+        builder: (context, state) =>const RoomDetailsView(),
       ),
     ],
   );
