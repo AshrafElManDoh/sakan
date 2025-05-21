@@ -10,7 +10,7 @@ class RoomItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.roomDetailsView);
+        context.push("${AppRouter.homeView}/${AppRouter.apartmentDetailsView}/${AppRouter.roomDetailsView}");
       },
       child: AspectRatio(
         aspectRatio: 121/157,

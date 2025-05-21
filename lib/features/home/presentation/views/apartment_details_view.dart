@@ -71,3 +71,4 @@ class ApartmentDetailsView extends StatelessWidget {
     );
   }
 }
+

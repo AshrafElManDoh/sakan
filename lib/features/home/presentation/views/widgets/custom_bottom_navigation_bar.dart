@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-  const CustomBottomNavigationBar({super.key,required this.onTap, required this.currentIndex});
+  const CustomBottomNavigationBar({super.key, this.onTap, required this.currentIndex});
   final void Function(int)? onTap ;
   final int currentIndex ;
 
