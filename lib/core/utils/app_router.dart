@@ -34,7 +34,7 @@
 //   // static const profileView = '/';
 //   static const apartmentDetailsView = '/apartmentDetails';
 //   static const roomDetailsView = '/roomDetailsView';
-  
+
 //   static final router = GoRouter(
 //     routes: [
 //       GoRoute(
@@ -101,8 +101,6 @@
 //   );
 // }
 
-
-
 import 'package:go_router/go_router.dart';
 import 'package:sakan/features/authentication/presentation/views/forget_password_view.dart';
 import 'package:sakan/features/authentication/presentation/views/login_view.dart';
@@ -118,6 +116,9 @@ import 'package:sakan/features/home/presentation/views/main_view.dart';
 import 'package:sakan/features/home/presentation/views/room_details_view.dart';
 import 'package:sakan/features/introduction/presentation/views/introduction_view.dart';
 import 'package:sakan/features/map/presentation/views/map_view.dart';
+import 'package:sakan/features/owner/booking_request/presentation/views/booking_requests_view.dart';
+import 'package:sakan/features/owner/dashboard/presentation/views/dashboard_view.dart';
+import 'package:sakan/features/owner/property_management/presentation/views/property_management_view.dart';
 import 'package:sakan/features/profile/presentation/views/profile_view.dart';
 import 'package:sakan/features/search/presentation/views/search_view.dart';
 
@@ -142,8 +143,14 @@ abstract class AppRouter {
   static const apartmentDetailsView = 'apartmentDetails';
   static const roomDetailsView = 'roomDetails';
 
+  //shellRoute paths for owner
+  static const propertyManagementView = '/propertyManagement';
+  static const bookingRequestsView = '/bookingRequests';
+  static const ownerProfileView = '/ownerProfile';
+  //nested paths
+
   static final router = GoRouter(
-    initialLocation: homeView,
+    initialLocation: propertyManagementView,
     routes: [
       // ✅ ShellRoute for pages with BottomNavigationBar
       ShellRoute(
@@ -151,7 +158,8 @@ abstract class AppRouter {
         routes: [
           GoRoute(
             path: homeView,
-            pageBuilder: (context, state) => const NoTransitionPage(child: HomeView()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: HomeView()),
             routes: [
               GoRoute(
                 path: apartmentDetailsView,
@@ -167,18 +175,44 @@ abstract class AppRouter {
           ),
           GoRoute(
             path: mapView,
-            pageBuilder: (context, state) => const NoTransitionPage(child: MapView()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: MapView()),
           ),
           GoRoute(
             path: searchView,
-            pageBuilder: (context, state) => const NoTransitionPage(child: SearchView()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: SearchView()),
           ),
           GoRoute(
             path: profileView,
-            pageBuilder: (context, state) => const NoTransitionPage(child: ProfileView()),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: ProfileView()),
           ),
         ],
       ),
+      // ShellRoute for owner
+      ShellRoute(
+          builder: (context, state, child) => DashboardView(child: child),
+          routes: [
+            GoRoute(
+              path: propertyManagementView,
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: PropertyManagementView(),
+              ),
+            ),
+            GoRoute(
+              path: bookingRequestsView,
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: BookingRequestsView(),
+              ),
+            ),
+            GoRoute(
+              path: ownerProfileView,
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: ProfileView(),
+              ),
+            ),
+          ]),
 
       // ✅ Other routes outside BottomNavigationBar layout
       GoRoute(
