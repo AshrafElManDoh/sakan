@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/core/widgets/custom_description_field.dart';
@@ -7,8 +7,8 @@ import 'package:sakan/core/widgets/custom_text_field_inside.dart';
 import 'package:sakan/core/widgets/custom_upload_photos.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/drop_down_apartments.dart';
 
-class AddRoomBody extends StatelessWidget {
-  const AddRoomBody({super.key});
+class EditRoomBody extends StatelessWidget {
+  const EditRoomBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class AddRoomBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Add Room",
+              "Edit Room",
               style:
                   AppStyles.stylesSemiBold30.copyWith(color: ksecondaryColor),
             ),
@@ -60,7 +60,7 @@ class AddRoomBody extends StatelessWidget {
             ),
             Align(
                 child: CustomProfileButton(
-                    title: "Add Room", color: ksecondaryColor)),
+                    title: "Edit Room", color: ksecondaryColor)),
             SizedBox(
               height: 32,
             ),

@@ -121,6 +121,8 @@ import 'package:sakan/features/owner/dashboard/presentation/views/dashboard_view
 import 'package:sakan/features/owner/property_management/presentation/views/add_apartment_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/property_management_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/add_room_view.dart';
+import 'package:sakan/features/owner/property_management/presentation/views/widgets/edit_apartment_view.dart';
+import 'package:sakan/features/owner/property_management/presentation/views/widgets/edit_room_view.dart';
 import 'package:sakan/features/profile/presentation/views/profile_view.dart';
 import 'package:sakan/features/search/presentation/views/search_view.dart';
 
@@ -151,6 +153,8 @@ abstract class AppRouter {
   static const ownerProfileView = '/ownerProfile';
   //nested paths
   static const addApartmentView = 'addApartment';
+  static const editApartmentView = 'editApartment';
+  static const editRoomView = 'editRoom';
   static const addRoomView = 'addRoom';
 
   static final router = GoRouter(
@@ -207,6 +211,14 @@ abstract class AppRouter {
                   GoRoute(
                     path: addApartmentView,
                     builder: (context, state) => AddApartmentView(),
+                  ),
+                  GoRoute(
+                    path: editApartmentView,
+                    builder: (context, state) => EditApartmentView(),
+                  ),
+                  GoRoute(
+                    path: editRoomView,
+                    builder: (context, state) => EditRoomView(),
                   ),
                   GoRoute(
                     path: addRoomView,

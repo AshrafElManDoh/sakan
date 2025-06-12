@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sakan/core/utils/app_router.dart';
 
 class RoomTable extends StatelessWidget {
   const RoomTable({super.key});
@@ -40,8 +42,10 @@ class RoomTable extends StatelessWidget {
               const DataCell(Text("300€")),
               DataCell(Text("15${90 - index}")),
               DataCell(Row(
-                children: const [
-                  Icon(Icons.edit, size: 20),
+                children: [
+                  IconButton(onPressed: (){
+                    context.push("${AppRouter.propertyManagementView}/${AppRouter.editRoomView}");
+                  }, icon: Icon(Icons.edit, size: 20),),
                   SizedBox(width: 10),
                   Icon(Icons.delete, size: 20),
                 ],
