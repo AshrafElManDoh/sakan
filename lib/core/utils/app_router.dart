@@ -118,7 +118,9 @@ import 'package:sakan/features/introduction/presentation/views/introduction_view
 import 'package:sakan/features/map/presentation/views/map_view.dart';
 import 'package:sakan/features/owner/booking_request/presentation/views/booking_requests_view.dart';
 import 'package:sakan/features/owner/dashboard/presentation/views/dashboard_view.dart';
+import 'package:sakan/features/owner/property_management/presentation/views/add_apartment_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/property_management_view.dart';
+import 'package:sakan/features/owner/property_management/presentation/views/widgets/add_room_view.dart';
 import 'package:sakan/features/profile/presentation/views/profile_view.dart';
 import 'package:sakan/features/search/presentation/views/search_view.dart';
 
@@ -148,6 +150,8 @@ abstract class AppRouter {
   static const bookingRequestsView = '/bookingRequests';
   static const ownerProfileView = '/ownerProfile';
   //nested paths
+  static const addApartmentView = 'addApartment';
+  static const addRoomView = 'addRoom';
 
   static final router = GoRouter(
     initialLocation: propertyManagementView,
@@ -195,11 +199,20 @@ abstract class AppRouter {
           builder: (context, state, child) => DashboardView(child: child),
           routes: [
             GoRoute(
-              path: propertyManagementView,
-              pageBuilder: (context, state) => NoTransitionPage(
-                child: PropertyManagementView(),
-              ),
-            ),
+                path: propertyManagementView,
+                pageBuilder: (context, state) => NoTransitionPage(
+                      child: PropertyManagementView(),
+                    ),
+                routes: [
+                  GoRoute(
+                    path: addApartmentView,
+                    builder: (context, state) => AddApartmentView(),
+                  ),
+                  GoRoute(
+                    path: addRoomView,
+                    builder: (context, state) => AddRoomView(),
+                  ),
+                ]),
             GoRoute(
               path: bookingRequestsView,
               pageBuilder: (context, state) => NoTransitionPage(
