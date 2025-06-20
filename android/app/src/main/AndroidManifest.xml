@@ -3,6 +3,8 @@
         android:label="SAKAN"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBFs4_2bN01iWB5SrINQWGi64Ak2hA3BxQ"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
