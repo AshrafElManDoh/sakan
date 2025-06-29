@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 
 class LocationText extends StatelessWidget {
-  const LocationText({super.key, required this.locationAddress,  this.alignment});
+  const LocationText(
+      {super.key, required this.locationAddress, this.alignment});
   final String locationAddress;
   final MainAxisAlignment? alignment;
 

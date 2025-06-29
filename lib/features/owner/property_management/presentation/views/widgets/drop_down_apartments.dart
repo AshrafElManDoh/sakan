@@ -6,8 +6,7 @@ class DropDownApartments extends StatefulWidget {
   const DropDownApartments({super.key});
 
   @override
-  State<DropDownApartments> createState() =>
-      _DropDownApartmentsState();
+  State<DropDownApartments> createState() => _DropDownApartmentsState();
 }
 
 class _DropDownApartmentsState extends State<DropDownApartments> {

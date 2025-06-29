@@ -22,41 +22,41 @@ class _ApartmentImagesWidgetState extends State<ApartmentImagesWidget> {
     return Column(
       children: [
         SizedBox(
-              width: double.infinity,
-              child: CustomImageWithAspectRatio(
-                imagePath: images[currentIndex],
-                isActive: false,
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: images.asMap().entries.map(
-                (e) {
-                  int index = e.key;
-                  String item = e.value;
-                  return SizedBox(
-                    height: 70,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(
-                          () {
-                            currentIndex = index;
-                          },
-                        );
+          width: double.infinity,
+          child: CustomImageWithAspectRatio(
+            imagePath: images[currentIndex],
+            isActive: false,
+          ),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: images.asMap().entries.map(
+            (e) {
+              int index = e.key;
+              String item = e.value;
+              return SizedBox(
+                height: 70,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(
+                      () {
+                        currentIndex = index;
                       },
-                      child: CustomImageWithAspectRatio(
-                        isActive: currentIndex == index,
-                        imagePath: item,
-                      ),
-                    ),
-                  );
-                },
-              ).toList(),
-            )
+                    );
+                  },
+                  child: CustomImageWithAspectRatio(
+                    isActive: currentIndex == index,
+                    imagePath: item,
+                  ),
+                ),
+              );
+            },
+          ).toList(),
+        )
       ],
     );
   }

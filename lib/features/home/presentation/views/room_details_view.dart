@@ -31,12 +31,18 @@ class RoomDetailsView extends StatelessWidget {
               "Price Details",
               style:
                   AppStyles.stylesSemiBold16.copyWith(color: Color(0xff344054)),
-            ),SizedBox(height: 16,),
+            ),
+            SizedBox(
+              height: 16,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Monthly",style: AppStyles.stylesSemiBold13),
-                Text(r"$300",style: AppStyles.stylesSemiBold13,)
+                Text("Monthly", style: AppStyles.stylesSemiBold13),
+                Text(
+                  r"$300",
+                  style: AppStyles.stylesSemiBold13,
+                )
               ],
             )
           ],

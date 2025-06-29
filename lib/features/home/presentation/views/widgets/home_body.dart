@@ -8,24 +8,25 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16),
-    child: CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              CustomChooseText(text: "The nearest apartment to your University"),
-              SizedBox(height: 32),
-            ],
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                CustomChooseText(
+                    text: "The nearest apartment to your University"),
+                SizedBox(height: 32),
+              ],
+            ),
           ),
-        ),
-        SliverPadding(
-          padding: EdgeInsets.only(bottom: 16),
-          sliver: ApartmentsListView(), 
-        ),
-      ],
-    ),
-  );
+          SliverPadding(
+            padding: EdgeInsets.only(bottom: 16),
+            sliver: ApartmentsListView(),
+          ),
+        ],
+      ),
+    );
   }
 }

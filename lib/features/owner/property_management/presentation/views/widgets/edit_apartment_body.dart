@@ -57,8 +57,7 @@ class EditApartmentBody extends StatelessWidget {
               height: 16,
             ),
             Align(
-              child: CustomProfileButton(
-                  title: "Edit", color: ksecondaryColor),
+              child: CustomProfileButton(title: "Edit", color: ksecondaryColor),
             ),
             SizedBox(
               height: 32,

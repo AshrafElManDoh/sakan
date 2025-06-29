@@ -16,19 +16,31 @@ class BookingReqeuestsBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Welcome back, Pedro Sevila ",style: AppStyles.stylesSemiBold20,),
-                SizedBox(height: 10,),
-                Text("Track, manage and forecast your properties",style: AppStyles.stylesRegular16,),
-                SizedBox(height: 24,),
+                Text(
+                  "Welcome back, Pedro Sevila ",
+                  style: AppStyles.stylesSemiBold20,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Track, manage and forecast your properties",
+                  style: AppStyles.stylesRegular16,
+                ),
+                SizedBox(
+                  height: 24,
+                ),
                 Container(
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16)
-                  ),child: Column(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Column(
                     children: [
                       PropertyContainerHeader(),
-                      SizedBox(height: 16,),
+                      SizedBox(
+                        height: 16,
+                      ),
                       RequestTable()
                     ],
                   ),

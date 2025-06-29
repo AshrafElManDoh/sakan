@@ -17,7 +17,10 @@ class LocationWidget extends StatelessWidget {
         LocationText(
           locationAddress: "Beverly Hills, CA 90210",
           alignment: MainAxisAlignment.start,
-        ),SizedBox(height: 16,),
+        ),
+        SizedBox(
+          height: 16,
+        ),
         Image.asset("assets/icon/1 (County).png"),
       ],
     );

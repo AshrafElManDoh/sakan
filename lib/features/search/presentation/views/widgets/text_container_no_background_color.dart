@@ -6,7 +6,7 @@ class TextContainerNoBackgroundColor extends StatelessWidget {
   const TextContainerNoBackgroundColor(
       {super.key, required this.title, required this.isActive, this.onTap});
   final String title;
-  final void Function()? onTap ;
+  final void Function()? onTap;
   final bool isActive;
 
   @override
@@ -18,7 +18,7 @@ class TextContainerNoBackgroundColor extends StatelessWidget {
         decoration: ShapeDecoration(
           shape: OutlineInputBorder(
             borderSide: BorderSide(
-              color: isActive?ksecondaryColor: kthirdColor,
+              color: isActive ? ksecondaryColor : kthirdColor,
             ),
             borderRadius: BorderRadius.circular(10),
           ),
@@ -26,7 +26,7 @@ class TextContainerNoBackgroundColor extends StatelessWidget {
         child: Text(
           title,
           style: AppStyles.stylesMedium18.copyWith(
-            color: isActive?ksecondaryColor: kthirdColor,
+            color: isActive ? ksecondaryColor : kthirdColor,
           ),
         ),
       ),

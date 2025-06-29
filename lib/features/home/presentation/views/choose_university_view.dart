@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/features/home/presentation/views/widgets/custom_choose_text.dart';
-import 'package:sakan/features/home/presentation/views/widgets/custom_search_field.dart';
-import 'package:sakan/features/home/presentation/views/widgets/universities_grid_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sakan/core/utils/service_locator.dart';
+import 'package:sakan/features/home/data/repos/home_repo_imp.dart';
+import 'package:sakan/features/home/presentation/views/widgets/choose_university_body.dart';
+import 'package:sakan/features/home/presentation/views_model/get_universities_cubit/get_universities_cubit.dart';
 
 class ChooseUniversityView extends StatelessWidget {
   const ChooseUniversityView({super.key});
@@ -12,23 +14,9 @@ class ChooseUniversityView extends StatelessWidget {
       appBar: AppBar(
         forceMaterialTransparency: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            CustomChooseText(text: "Choose the name of your University"),
-            SizedBox(
-              height: 64,
-            ),
-            CustomSearchField(),
-            SizedBox(
-              height: 32,
-            ),
-            Expanded(
-              child: UniversitiesGridView(),
-            ),
-          ],
-        ),
+      body: BlocProvider(
+        create: (context) => GetUniversitiesCubit(getIt.get<HomeRepoImp>())..getUniversities(),
+        child: ChooseUniversityBody(),
       ),
     );
   }

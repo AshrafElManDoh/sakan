@@ -63,8 +63,7 @@ class PriceAndRoomsAndPropertySections extends StatelessWidget {
             child: GestureDetector(
               onTap: () {},
               child: Container(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 60, vertical: 20),
                 decoration: BoxDecoration(
                   color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(70),

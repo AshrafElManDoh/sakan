@@ -30,7 +30,9 @@ class OtpBody extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            CustomOtp(otpController: otpController,),
+            CustomOtp(
+              otpController: otpController,
+            ),
             SizedBox(
               height: 16,
             ),
@@ -38,9 +40,13 @@ class OtpBody extends StatelessWidget {
             SizedBox(
               height: 42,
             ),
-            CustomButton(name: "Confirm",onTap: () {
-              GoRouter.of(context).pushReplacement(AppRouter.resetPasswordView);
-            },),
+            CustomButton(
+              name: "Confirm",
+              onTap: () {
+                GoRouter.of(context)
+                    .pushReplacement(AppRouter.resetPasswordView);
+              },
+            ),
             SizedBox(
               height: 50,
             ),
@@ -50,4 +56,3 @@ class OtpBody extends StatelessWidget {
     );
   }
 }
-

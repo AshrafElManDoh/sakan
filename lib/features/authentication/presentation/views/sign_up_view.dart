@@ -20,7 +20,9 @@ class SignUpView extends StatelessWidget {
         create: (context) => RegisterCubit(
           getIt.get<AuthRepoImp>(),
         ),
-        child: SignUpBody(role: role,),
+        child: SignUpBody(
+          role: role,
+        ),
       ),
     );
   }

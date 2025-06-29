@@ -4,16 +4,16 @@ import 'package:sakan/core/utils/assets.dart';
 
 class CustomLogo extends StatelessWidget {
   const CustomLogo({super.key, required this.radius});
-  final double radius ;
+  final double radius;
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-          backgroundColor: kPrimaryColor,
-          radius: radius,
-          child: Image.asset(
-            Assets.logo,
-            height: radius,
-          ),
-        );
+      backgroundColor: kPrimaryColor,
+      radius: radius,
+      child: Image.asset(
+        Assets.logo,
+        height: radius,
+      ),
+    );
   }
 }

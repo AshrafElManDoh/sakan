@@ -4,7 +4,7 @@ import 'package:sakan/constants.dart';
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.name, this.onTap});
   final String name;
-  final void Function()? onTap ;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 70,vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 5),
               child: Text(
                 name,
                 style: TextStyle(

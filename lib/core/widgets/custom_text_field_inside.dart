@@ -15,10 +15,7 @@ class CustomTextFieldInside extends StatelessWidget {
       children: [
         FittedBox(
           fit: BoxFit.scaleDown,
-          child: Text(
-            title,
-            style: AppStyles.stylesMedium18
-          ),
+          child: Text(title, style: AppStyles.stylesMedium18),
         ),
         SizedBox(
           height: 6,

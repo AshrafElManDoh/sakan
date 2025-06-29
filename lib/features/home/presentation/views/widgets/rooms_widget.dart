@@ -10,12 +10,18 @@ class RoomsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Rooms",style: AppStyles.stylesSemiBold13,),
-        SizedBox(height: 16,),
+        Text(
+          "Rooms",
+          style: AppStyles.stylesSemiBold13,
+        ),
+        SizedBox(
+          height: 16,
+        ),
         RoomItemsListView(),
-        SizedBox(height: 32,),
+        SizedBox(
+          height: 32,
+        ),
       ],
     );
   }
 }
-

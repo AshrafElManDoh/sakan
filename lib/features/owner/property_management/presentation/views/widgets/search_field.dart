@@ -9,7 +9,10 @@ class SearchField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: "Search",
         hintStyle: TextStyle(color: Colors.grey[500]),
-        prefixIcon: Icon(Icons.search,color: Colors.grey[500],),
+        prefixIcon: Icon(
+          Icons.search,
+          color: Colors.grey[500],
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(

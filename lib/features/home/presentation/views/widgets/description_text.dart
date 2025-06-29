@@ -16,7 +16,8 @@ class DescriptionText extends StatelessWidget {
         SizedBox(
           height: 8,
         ),
-        Text(description_text,
+        Text(
+          description_text,
           style: AppStyles.stylesRegular12,
         )
       ],

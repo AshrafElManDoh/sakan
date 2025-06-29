@@ -8,42 +8,39 @@ class SearchFieldWithSettingIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "City",
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(72),
-                      borderSide: BorderSide(
-                        color: Color(0xffE3E3E7)
-                      ),
-                    ),enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(72),
-                      borderSide: BorderSide(
-                        color: Color(0xffE3E3E7)
-                      ),
-                    ),
-                  ),
-                ),
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: "City",
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(72),
+                borderSide: BorderSide(color: Color(0xffE3E3E7)),
               ),
-              SizedBox(
-                width: 16,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(72),
+                borderSide: BorderSide(color: Color(0xffE3E3E7)),
               ),
-              Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: ksecondaryColor,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Icon(
-                  FontAwesomeIcons.sliders,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          );
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 16,
+        ),
+        Container(
+          padding: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            color: ksecondaryColor,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Icon(
+            FontAwesomeIcons.sliders,
+            color: Colors.white,
+          ),
+        )
+      ],
+    );
   }
 }

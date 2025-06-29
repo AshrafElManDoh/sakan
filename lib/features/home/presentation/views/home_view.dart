@@ -7,11 +7,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-      ),
-      // bottomNavigationBar: CustomBottomNavigationBar(),
-      body: HomeBody()
-    );
+        appBar: AppBar(
+          forceMaterialTransparency: true,
+        ),
+        // bottomNavigationBar: CustomBottomNavigationBar(),
+        body: HomeBody());
   }
 }

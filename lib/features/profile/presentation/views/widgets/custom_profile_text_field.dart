@@ -13,10 +13,7 @@ class CustomProfileTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: AppStyles.stylesSemiBold20
-        ),
+        Text(title, style: AppStyles.stylesSemiBold20),
         SizedBox(
           height: 6,
         ),

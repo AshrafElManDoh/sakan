@@ -7,7 +7,9 @@ class AddRoomView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(forceMaterialTransparency: true,),
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+      ),
       body: AddRoomBody(),
     );
   }

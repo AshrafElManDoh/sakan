@@ -3,17 +3,21 @@ import 'package:sakan/constants.dart';
 
 class CustomConfirmPassTextField extends StatefulWidget {
   const CustomConfirmPassTextField(
-      {super.key, required this.name, required this.textEditingController,  required this.passController});
+      {super.key,
+      required this.name,
+      required this.textEditingController,
+      required this.passController});
   final String name;
   final TextEditingController textEditingController;
   final TextEditingController passController;
-  
+
   @override
   State<CustomConfirmPassTextField> createState() =>
       _CustomConfirmPassTextFieldState();
 }
 
-class _CustomConfirmPassTextFieldState extends State<CustomConfirmPassTextField> {
+class _CustomConfirmPassTextFieldState
+    extends State<CustomConfirmPassTextField> {
   bool isobscure = true;
 
   @override
@@ -35,7 +39,8 @@ class _CustomConfirmPassTextFieldState extends State<CustomConfirmPassTextField>
           controller: widget.textEditingController,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
-            if(widget.textEditingController.text != widget.passController.text){
+            if (widget.textEditingController.text !=
+                widget.passController.text) {
               return 'password and confirm password not match';
             }
             return null;

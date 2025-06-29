@@ -13,10 +13,7 @@ class CustomDescriptionField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: AppStyles.stylesMedium18
-        ),
+        Text(title, style: AppStyles.stylesMedium18),
         SizedBox(
           height: 6,
         ),

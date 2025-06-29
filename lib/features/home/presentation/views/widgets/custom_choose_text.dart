@@ -3,9 +3,10 @@ import 'package:sakan/core/utils/app_styles.dart';
 
 class CustomChooseText extends StatelessWidget {
   const CustomChooseText({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
-  final String text ;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

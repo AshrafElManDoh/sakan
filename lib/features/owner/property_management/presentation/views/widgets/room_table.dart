@@ -43,9 +43,13 @@ class RoomTable extends StatelessWidget {
               DataCell(Text("15${90 - index}")),
               DataCell(Row(
                 children: [
-                  IconButton(onPressed: (){
-                    context.push("${AppRouter.propertyManagementView}/${AppRouter.editRoomView}");
-                  }, icon: Icon(Icons.edit, size: 20),),
+                  IconButton(
+                    onPressed: () {
+                      context.push(
+                          "${AppRouter.propertyManagementView}/${AppRouter.editRoomView}");
+                    },
+                    icon: Icon(Icons.edit, size: 20),
+                  ),
                   SizedBox(width: 10),
                   Icon(Icons.delete, size: 20),
                 ],

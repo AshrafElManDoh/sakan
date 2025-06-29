@@ -10,8 +10,7 @@ class StudentOrOwnerView extends StatelessWidget {
       appBar: AppBar(
         forceMaterialTransparency: true,
       ),
-      body: SafeArea(
-          child: StudentOrOwnerBody()),
+      body: SafeArea(child: StudentOrOwnerBody()),
     );
   }
 }
