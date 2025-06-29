@@ -24,7 +24,7 @@ class AuthRepoImp implements AuthRepo {
       "role": role,
     };
     try {
-      var response = await apiService.post(endPoint: "Register", data: data);
+      var response = await apiService.post(endPoint: "Account/Register", data: data);
       // log(response.toString());
       String msg = response.toString();
       return right(msg);
@@ -45,7 +45,7 @@ class AuthRepoImp implements AuthRepo {
       "password": password,
     };
     try {
-      var response = await apiService.post(endPoint: "Login", data: data);
+      var response = await apiService.post(endPoint: "Account/Login", data: data);
       return right(response);
     } catch (e) {
       if (e is DioException) {
@@ -62,7 +62,7 @@ class AuthRepoImp implements AuthRepo {
     Map<String, String> data = {"email": email};
     try {
       var response =
-          await apiService.post(endPoint: "ForgotPassword", data: data);
+          await apiService.post(endPoint: "Account/ForgotPassword", data: data);
       return right(response.toString());
     } catch (e) {
       if (e is DioException) {
@@ -87,7 +87,7 @@ class AuthRepoImp implements AuthRepo {
     };
     try {
       var response = await apiService.post(
-        endPoint: "ResetPassword",
+        endPoint: "Account/ResetPassword",
         data: data,
       );
 

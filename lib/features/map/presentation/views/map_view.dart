@@ -8,8 +8,8 @@ class MapView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(forceMaterialTransparency: true,),
-      // body: MapBody(),
-      body: Center(child: Text("Map"),),
+      body: MapBody(),
+      // body: Center(child: Text("Map"),),
     );
   }
 }
