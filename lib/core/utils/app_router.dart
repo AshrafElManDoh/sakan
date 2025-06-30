@@ -109,7 +109,7 @@ import 'package:sakan/features/authentication/presentation/views/reset_password_
 import 'package:sakan/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:sakan/features/authentication/presentation/views/student_or_owner_view.dart';
 import 'package:sakan/features/home/presentation/views/apartment_details_view.dart';
-import 'package:sakan/features/home/presentation/views/choose_city_view.dart';
+import 'package:sakan/features/home/presentation/views/choose_college_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_university_view.dart';
 import 'package:sakan/features/home/presentation/views/home_view.dart';
 import 'package:sakan/features/home/presentation/views/main_view.dart';
@@ -134,7 +134,7 @@ abstract class AppRouter {
   static const forgetPasswordView = '/forgetPassword';
   static const otpView = '/otp';
   static const resetPasswordView = '/resetPassword';
-  static const chooseCityView = '/chooseCityView';
+  static const chooseCollegeView = '/chooseCityView';
   static const chooseUniverstiyView = '/chooseUniverstiyView';
 
   // ShellRoute paths
@@ -273,8 +273,10 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: chooseCityView,
-        builder: (context, state) => const ChooseCityView(),
+        path: chooseCollegeView,
+        builder: (context, state) => ChooseCollegeView(
+          universityID: state.extra as int,
+        ),
       ),
       GoRoute(
         path: chooseUniverstiyView,

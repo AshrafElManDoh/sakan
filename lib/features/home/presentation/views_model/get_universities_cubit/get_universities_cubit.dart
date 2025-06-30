@@ -30,6 +30,6 @@ class GetUniversitiesCubit extends Cubit<GetUniversitiesState> {
         .where((university) =>
             university.name!.toLowerCase().contains(query.toLowerCase()))
         .toList();
-        emit(GetUniversitiesSuccess(universities: filtered));
+    emit(GetUniversitiesSuccess(universities: filtered));
   }
 }

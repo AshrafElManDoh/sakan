@@ -15,7 +15,8 @@ class ChooseUniversityView extends StatelessWidget {
         forceMaterialTransparency: true,
       ),
       body: BlocProvider(
-        create: (context) => GetUniversitiesCubit(getIt.get<HomeRepoImp>())..getUniversities(),
+        create: (context) =>
+            GetUniversitiesCubit(getIt.get<HomeRepoImp>())..getUniversities(),
         child: ChooseUniversityBody(),
       ),
     );

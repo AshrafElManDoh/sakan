@@ -3,7 +3,8 @@ import 'package:sakan/constants.dart';
 
 class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
-    super.key, this.onChanged,
+    super.key,
+    this.onChanged,
   });
   final void Function(String)? onChanged;
   @override
