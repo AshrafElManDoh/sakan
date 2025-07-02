@@ -16,7 +16,9 @@ class CollegesGridView extends StatelessWidget {
         childAspectRatio: 176 / 153,
       ),
       itemCount: colleges.length,
-      itemBuilder: (context, index) => CollegeWidget(college: colleges[index],),
+      itemBuilder: (context, index) => CollegeWidget(
+        college: colleges[index],
+      ),
     );
   }
 }

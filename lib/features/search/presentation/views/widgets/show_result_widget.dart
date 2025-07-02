@@ -6,6 +6,8 @@ class ShowResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ApartmentsListView();
+    return ApartmentsListView(
+      apartments: [],
+    );
   }
 }

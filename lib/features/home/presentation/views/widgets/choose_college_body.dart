@@ -23,7 +23,12 @@ class ChooseCollegeBody extends StatelessWidget {
           SizedBox(
             height: 64,
           ),
-          CustomSearchField(),
+          CustomSearchField(
+            onChanged: (value) {
+              BlocProvider.of<GetCollegesCubit>(context)
+                  .filterColleges(query: value);
+            },
+          ),
           SizedBox(
             height: 32,
           ),
@@ -38,7 +43,9 @@ class ChooseCollegeBody extends StatelessWidget {
               },
               builder: (context, state) {
                 if (state is GetCollegesSuccess) {
-                  return CollegesGridView(colleges: state.colleges,);
+                  return CollegesGridView(
+                    colleges: state.colleges,
+                  );
                 } else {
                   return Center(
                     child: CircularProgressIndicator(),

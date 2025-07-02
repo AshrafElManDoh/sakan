@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:sakan/core/errors/failure.dart';
 import 'package:sakan/core/utils/api_service.dart';
+import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 import 'package:sakan/features/home/data/models/college_model/college_model.dart';
 import 'package:sakan/features/home/data/models/university_model/university_model.dart';
 import 'package:sakan/features/home/data/repos/home_repo.dart';
@@ -40,6 +41,26 @@ class HomeRepoImp implements HomeRepo {
         colleges.add(CollegeModel.fromJson(college));
       }
       return right(colleges);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErrors(e));
+      } else {
+        return left(ServerFailure(errmsg: e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ApartmentModel>>> getApartments() async {
+    try {
+      var response = await apiService.get(endPoint: "Apartment");
+      List<ApartmentModel> apartments = [];
+      for (var apartment in response) {
+        apartments.add(
+          ApartmentModel.fromJson(apartment),
+        );
+      }
+      return right(apartments);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioErrors(e));

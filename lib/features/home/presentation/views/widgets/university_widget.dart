@@ -12,7 +12,8 @@ class UniversityWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).go(AppRouter.chooseCollegeView,extra: university.id);
+        GoRouter.of(context)
+            .push(AppRouter.chooseCollegeView, extra: university.id);
       },
       child: Container(
         decoration: BoxDecoration(

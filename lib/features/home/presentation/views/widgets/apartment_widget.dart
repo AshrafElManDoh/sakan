@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 import 'package:sakan/features/home/presentation/views/widgets/location_text.dart';
 
 class ApartmentWidget extends StatelessWidget {
-  const ApartmentWidget({super.key});
+  const ApartmentWidget({super.key, required this.apartmentModel});
+  final ApartmentModel apartmentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +22,14 @@ class ApartmentWidget extends StatelessWidget {
             AspectRatio(
               aspectRatio: 180 / 125,
               child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    "assets/icon/apartment.png",
-                    fit: BoxFit.cover,
+                  Image.network(
+                    apartmentModel.imagePaths![0],
+                    fit: BoxFit.fill,
+                    errorBuilder: (context, error, stackTrace) => Center(
+                      child: Text("There is no photos !"),
+                    ),
                   ),
                   Positioned(
                     top: 10,
@@ -50,66 +56,66 @@ class ApartmentWidget extends StatelessWidget {
             //title & subtitle
 
             Text(
-              "302 North Plam Drive",
+              apartmentModel.titledto!,
               style: AppStyles.stylesBold16,
             ),
             LocationText(
-              locationAddress: "Beverly Hills, CA 90210",
+              locationAddress: apartmentModel.locationdto!,
             ),
             SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Divider(),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _iconText(Icons.square_foot, '240 Square Feet'),
-                  _iconText(Icons.chair, 'Furnished'),
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 20),
+            //   child: Divider(),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       _iconText(Icons.square_foot, '240 Square Feet'),
+            //       _iconText(Icons.chair, 'Furnished'),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(height: 10),
 
-            // Features Row 2
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _iconText(Icons.bed, '4 Bedrooms'),
-                  _iconText(Icons.bathtub, '2 Bathrooms'),
-                ],
-              ),
-            ),
+            // // Features Row 2
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       _iconText(Icons.bed, '4 Bedrooms'),
+            //       _iconText(Icons.bathtub, '2 Bathrooms'),
+            //     ],
+            //   ),
+            // ),
 
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Divider(),
-            ),
+            // SizedBox(height: 10),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 20),
+            //   child: Divider(),
+            // ),
 
-            // Owner + Time
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _iconText(Icons.person, 'Adam Smith'),
-                  _iconText(Icons.access_time, '5 days ago'),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
+            // // Owner + Time
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       _iconText(Icons.person, 'Adam Smith'),
+            //       _iconText(Icons.access_time, '5 days ago'),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             Container(
               width: double.infinity,
               height: 50,
@@ -121,7 +127,7 @@ class ApartmentWidget extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  '\$300/month',
+                  '${apartmentModel.pricePerMonthdto} EGP/month',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
