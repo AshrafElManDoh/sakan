@@ -5,9 +5,12 @@ import 'package:sakan/core/utils/app_styles.dart';
 class CustomTextFieldInside extends StatelessWidget {
   const CustomTextFieldInside({
     super.key,
-    required this.title,
+    required this.title, this.makeActive, this.textEditingController, this.isNumberOnly,
   });
+  final TextEditingController? textEditingController ;
   final String title;
+  final bool? makeActive ;
+  final bool? isNumberOnly ;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,6 +24,9 @@ class CustomTextFieldInside extends StatelessWidget {
           height: 6,
         ),
         TextFormField(
+          keyboardType: isNumberOnly==true ? TextInputType.number : null,
+          enabled: makeActive ,
+          controller: textEditingController,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,

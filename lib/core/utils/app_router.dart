@@ -158,7 +158,7 @@ abstract class AppRouter {
   static const addRoomView = 'addRoom';
 
   static final router = GoRouter(
-    initialLocation: chooseUniverstiyView,
+    initialLocation: propertyManagementView,
     routes: [
       // ✅ ShellRoute for pages with BottomNavigationBar
       ShellRoute(
