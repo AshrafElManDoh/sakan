@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:sakan/core/errors/failure.dart';
 import 'package:sakan/core/utils/api_service.dart';
+import 'package:sakan/features/authentication/data/models/id_card_model/id_card_model.dart';
 import 'package:sakan/features/authentication/data/repos/auth_repo.dart';
 
 class AuthRepoImp implements AuthRepo {
@@ -94,6 +95,24 @@ class AuthRepoImp implements AuthRepo {
       );
 
       return right(response);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErrors(e));
+      } else {
+        return left(ServerFailure(errmsg: e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, IdCardModel>> uploadId(
+      {required FormData formdata}) async {
+    try {
+      var response = await apiService.postID(
+          url: "https://gemini-api-production-8e7d.up.railway.app/extract",
+          data: formdata);
+      IdCardModel idCard = IdCardModel.fromJson(response);
+      return right(idCard);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioErrors(e));

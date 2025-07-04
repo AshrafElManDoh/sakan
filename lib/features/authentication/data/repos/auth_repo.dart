@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:sakan/core/errors/failure.dart';
+import 'package:sakan/features/authentication/data/models/id_card_model/id_card_model.dart';
 
 abstract class AuthRepo {
   Future<Either<Failure, String>> register({
@@ -18,4 +20,5 @@ abstract class AuthRepo {
     required String newPassword,
     required String confirmPassword,
   });
+  Future<Either<Failure, IdCardModel>> uploadId({required FormData formdata});
 }

@@ -12,15 +12,20 @@ class ApiService {
     var response = await _dio.post(
       '$_baseUrl$endPoint',
       data: data,
-      // options: Options(
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      // ),
     );
     return response.data;
   }
 
+  Future<dynamic> postID({
+    required String url,
+    required Object data,
+  }) async {
+    var response = await _dio.post(
+      url,
+      data: data,
+    );
+    return response.data;
+  }
 
   Future<dynamic> get(
       {required String endPoint, Map<String, dynamic>? queryParams}) async {

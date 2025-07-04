@@ -15,7 +15,8 @@ class AddApartmentView extends StatelessWidget {
         forceMaterialTransparency: true,
       ),
       body: BlocProvider(
-        create: (context) => AddApartmentCubit(getIt.get<PropertyManageRepoImp>()),
+        create: (context) =>
+            AddApartmentCubit(getIt.get<PropertyManageRepoImp>()),
         child: AddApartmentBody(),
       ),
     );

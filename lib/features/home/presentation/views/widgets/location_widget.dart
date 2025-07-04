@@ -4,7 +4,7 @@ import 'package:sakan/features/home/presentation/views/widgets/location_text.dar
 
 class LocationWidget extends StatelessWidget {
   const LocationWidget({super.key, required this.location});
-  final String location ;
+  final String location;
 
   @override
   Widget build(BuildContext context) {

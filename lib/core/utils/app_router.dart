@@ -108,6 +108,7 @@ import 'package:sakan/features/authentication/presentation/views/otp_view.dart';
 import 'package:sakan/features/authentication/presentation/views/reset_password_view.dart';
 import 'package:sakan/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:sakan/features/authentication/presentation/views/student_or_owner_view.dart';
+import 'package:sakan/features/authentication/presentation/views/upload_id_card_view.dart';
 import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 import 'package:sakan/features/home/presentation/views/apartment_details_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_college_view.dart';
@@ -137,6 +138,7 @@ abstract class AppRouter {
   static const resetPasswordView = '/resetPassword';
   static const chooseCollegeView = '/chooseCityView';
   static const chooseUniverstiyView = '/chooseUniverstiyView';
+  static const uploadIdCardView = '/uploadIdCardView';
 
   // ShellRoute paths
   static const homeView = '/home';
@@ -284,6 +286,10 @@ abstract class AppRouter {
       GoRoute(
         path: chooseUniverstiyView,
         builder: (context, state) => const ChooseUniversityView(),
+      ),
+      GoRoute(
+        path: uploadIdCardView,
+        builder: (context, state) => const UploadIdCardView(),
       ),
     ],
   );

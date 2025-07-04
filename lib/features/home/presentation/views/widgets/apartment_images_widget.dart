@@ -10,13 +10,14 @@ class ApartmentImagesWidget extends StatefulWidget {
 }
 
 class _ApartmentImagesWidgetState extends State<ApartmentImagesWidget> {
-  late List<String> images ;
+  late List<String> images;
   int currentIndex = 0;
   @override
   void initState() {
-    images =widget.listImages ;
+    images = widget.listImages;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
