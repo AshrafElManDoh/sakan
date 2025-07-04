@@ -13,9 +13,12 @@ class CustomImageWithAspectRatio extends StatelessWidget {
       child: Container(
         padding: isActive ? EdgeInsets.all(4) : EdgeInsets.all(0),
         color: ksecondaryColor,
-        child: Image.asset(
+        child: Image.network(
           imagePath,
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
+          errorBuilder: (context, error, stackTrace) => Center(
+            child: Text("There is no photos !"),
+          ),
         ),
       ),
     );

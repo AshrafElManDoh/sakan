@@ -16,7 +16,7 @@ class RoomDetailsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ApartmentImagesWidget(),
+            ApartmentImagesWidget(listImages: [],),
             SizedBox(
               height: 16,
             ),

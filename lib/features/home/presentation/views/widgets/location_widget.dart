@@ -3,7 +3,8 @@ import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/features/home/presentation/views/widgets/location_text.dart';
 
 class LocationWidget extends StatelessWidget {
-  const LocationWidget({super.key});
+  const LocationWidget({super.key, required this.location});
+  final String location ;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class LocationWidget extends StatelessWidget {
           style: AppStyles.stylesSemiBold13,
         ),
         LocationText(
-          locationAddress: "Beverly Hills, CA 90210",
+          locationAddress: location,
           alignment: MainAxisAlignment.start,
         ),
         SizedBox(

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:sakan/core/widgets/custom_image_with_aspect_ratio.dart';
 
 class ApartmentImagesWidget extends StatefulWidget {
-  const ApartmentImagesWidget({super.key});
+  const ApartmentImagesWidget({super.key, required this.listImages});
+  final List<String> listImages;
 
   @override
   State<ApartmentImagesWidget> createState() => _ApartmentImagesWidgetState();
 }
 
 class _ApartmentImagesWidgetState extends State<ApartmentImagesWidget> {
-  List<String> images = [
-    "assets/icon/apartment.png",
-    "assets/icon/apartment2.png",
-    "assets/icon/apartment3.png",
-    "assets/icon/apartment2.png",
-    "assets/icon/apartment3.png",
-  ];
+  late List<String> images ;
   int currentIndex = 0;
+  @override
+  void initState() {
+    images =widget.listImages ;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(

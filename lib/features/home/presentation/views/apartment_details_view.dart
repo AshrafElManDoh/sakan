@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 import 'package:sakan/features/home/presentation/views/widgets/apartment_images_widget.dart';
 import 'package:sakan/features/home/presentation/views/widgets/description_text.dart';
 import 'package:sakan/features/home/presentation/views/widgets/location_widget.dart';
-import 'package:sakan/features/home/presentation/views/widgets/preview_facilites_widget.dart';
 import 'package:sakan/features/home/presentation/views/widgets/rooms_widget.dart';
 
 class ApartmentDetailsView extends StatelessWidget {
-  const ApartmentDetailsView({super.key});
+  const ApartmentDetailsView({super.key, required this.apartmentModel});
+  final ApartmentModel apartmentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -23,29 +24,46 @@ class ApartmentDetailsView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ApartmentImagesWidget(),
+                  (apartmentModel.imagePaths!.isNotEmpty ||
+                          apartmentModel.imagePaths != null)
+                      ? ApartmentImagesWidget(
+                          listImages: apartmentModel.imagePaths!,
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          child: AspectRatio(
+                            aspectRatio: 380 / 225,
+                            child: Container(
+                              color: Colors.white,
+                              child: Center(
+                                child: Text("There is no photos !"),
+                              ),
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     height: 16,
                   ),
                   Text(
-                    "302 North plam Drive ",
+                    apartmentModel.titledto!,
                     style: AppStyles.stylesBold20,
                   ),
                   SizedBox(
                     height: 16,
                   ),
                   DescriptionText(
-                    description_text:
-                        "Lorem ipsum dolor sit amet consectetur. Sit dui fermentum vitae in dui gravida lectus molestie. Dui a netus interdum enim. Vitae id ornare amet curabitur cursus arcu ante sed. Orci ipsum libero sed in eget vitae. Nulla fringilla integer viverra aenean massa. Metus consequat purus enim tortor malesuada morbi. Eget mattis risus mauris egestas. Aenean quis amet habitant tortor facilisis viverra erat viverra velit. Velit mattis magna cursus purus vitae mauris senectus maed,",
+                    description_text: apartmentModel.descriptiondto!,
                   ),
                   SizedBox(
                     height: 16,
                   ),
-                  PreviewFacilitesWidget(),
-                  SizedBox(
-                    height: 16,
+                  // PreviewFacilitesWidget(),
+                  // SizedBox(
+                  //   height: 16,
+                  // ),
+                  LocationWidget(
+                    location: apartmentModel.locationdto!,
                   ),
-                  LocationWidget(),
                   SizedBox(
                     height: 16,
                   ),

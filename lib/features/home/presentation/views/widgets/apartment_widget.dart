@@ -13,7 +13,8 @@ class ApartmentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push('${AppRouter.homeView}/${AppRouter.apartmentDetailsView}');
+        context.push('${AppRouter.homeView}/${AppRouter.apartmentDetailsView}',
+            extra: apartmentModel);
       },
       child: Card(
         color: Colors.white,

@@ -108,6 +108,7 @@ import 'package:sakan/features/authentication/presentation/views/otp_view.dart';
 import 'package:sakan/features/authentication/presentation/views/reset_password_view.dart';
 import 'package:sakan/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:sakan/features/authentication/presentation/views/student_or_owner_view.dart';
+import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 import 'package:sakan/features/home/presentation/views/apartment_details_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_college_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_university_view.dart';
@@ -158,7 +159,7 @@ abstract class AppRouter {
   static const addRoomView = 'addRoom';
 
   static final router = GoRouter(
-    initialLocation: propertyManagementView,
+    initialLocation: homeView,
     routes: [
       // ✅ ShellRoute for pages with BottomNavigationBar
       ShellRoute(
@@ -171,7 +172,9 @@ abstract class AppRouter {
             routes: [
               GoRoute(
                 path: apartmentDetailsView,
-                builder: (context, state) => const ApartmentDetailsView(),
+                builder: (context, state) => ApartmentDetailsView(
+                  apartmentModel: state.extra as ApartmentModel,
+                ),
                 routes: [
                   GoRoute(
                     path: roomDetailsView,
