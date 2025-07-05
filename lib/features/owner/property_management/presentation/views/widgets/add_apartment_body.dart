@@ -7,7 +7,7 @@ import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
 import 'package:sakan/core/widgets/custom_text_field_inside.dart';
 import 'package:sakan/core/widgets/custom_upload_photos.dart';
-import 'package:sakan/features/owner/property_management/data/models/add_apartment_cubit/add_apartment_cubit.dart';
+import 'package:sakan/features/owner/property_management/presentation/views_model/add_apartment_cubit/add_apartment_cubit.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 

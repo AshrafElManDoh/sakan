@@ -51,7 +51,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
-import 'package:sakan/features/owner/property_management/data/models/add_apartment_cubit/add_apartment_cubit.dart';
+import 'package:sakan/features/owner/property_management/presentation/views_model/add_apartment_cubit/add_apartment_cubit.dart';
 
 class CustomUploadPhotos extends StatelessWidget {
   const CustomUploadPhotos({super.key, required this.title});
