@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/features/home/data/models/room_model/room_model.dart';
 
 class RoomItem extends StatelessWidget {
-  const RoomItem({super.key});
+  const RoomItem({super.key, required this.room});
+  final RoomModel room;
 
   @override
   Widget build(BuildContext context) {
@@ -14,61 +16,64 @@ class RoomItem extends StatelessWidget {
             "${AppRouter.homeView}/${AppRouter.apartmentDetailsView}/${AppRouter.roomDetailsView}");
       },
       child: AspectRatio(
-        aspectRatio: 121 / 157,
+        aspectRatio: 145 / 157,
         child: Card(
           color: Colors.white,
           child: Column(
             children: [
               AspectRatio(
                 aspectRatio: 180 / 125,
-                child: Image.asset(
-                  "assets/icon/apartment.png",
-                  fit: BoxFit.cover,
+                child: Image.network(
+                  room.imagePaths![0],
+                  fit: BoxFit.fill,
+                  errorBuilder: (context, error, stackTrace) => Center(
+                    child: Text("There is no photos !"),
+                  ),
                 ),
               ),
               SizedBox(
-                height: 8,
+                height: 16,
               ),
               Text(
-                "Room 1",
+                "Room ${room.id}",
                 style: AppStyles.stylesBold16,
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Divider(),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _iconText(Icons.square_foot, '240 Square Feet'),
-                    _iconText(Icons.chair, 'Furnished'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _iconText(Icons.bed, '4 Bedrooms'),
-                    _iconText(Icons.bathtub, '2 Bathrooms'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Divider(),
-              ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: Divider(),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       _iconText(Icons.square_foot, '240 Square Feet'),
+              //       _iconText(Icons.chair, 'Furnished'),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(height: 10),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       _iconText(Icons.bed, '4 Bedrooms'),
+              //       _iconText(Icons.bathtub, '2 Bathrooms'),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(height: 10),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: Divider(),
+              // ),
               Spacer(),
               Container(
                 width: double.infinity,

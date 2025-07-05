@@ -8,7 +8,7 @@ final class UploadIdCardInitial extends UploadIdCardState {}
 final class UploadIdCardLoading extends UploadIdCardState {}
 
 final class UploadIdCardProcessImage extends UploadIdCardState {
-  final String msg ;
+  final String msg;
 
   UploadIdCardProcessImage({required this.msg});
 }

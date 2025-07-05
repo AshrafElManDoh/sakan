@@ -19,12 +19,11 @@ class UploadIdCardCubit extends Cubit<UploadIdCardState> {
 
   Future<void> uploadImage() async {
     image = await picker.pickImage(source: ImageSource.gallery);
-    if(image !=null){
+    if (image != null) {
       emit(UploadIdCardProcessImage(msg: "Please waiting !"));
-    }else{
+    } else {
       emit(UploadIdCardFailure(errmsg: "Please choose your id !"));
     }
-    
   }
 
   Future<void> uploadIdCard() async {
