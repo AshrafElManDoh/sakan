@@ -10,4 +10,5 @@ abstract class PropertyManageRepo {
   Future<Either<Failure, List<ApartmentModel>>> getApartment(
       {required int ownerId});
   Future<Either<Failure, List<RoomModel>>> getRooms({required int apartmentId});
+  Future<Either<Failure,Map<String,dynamic>>> deleteApartment({required int apartmentId});
 }

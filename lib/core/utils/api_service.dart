@@ -44,4 +44,9 @@ class ApiService {
         await _dio.get('$_baseUrl$endPoint', queryParameters: queryParams);
     return response.data;
   }
+
+  Future<dynamic> delete({required String endPoint}) async {
+    var response = await _dio.delete('$_baseUrl$endPoint');
+    return response.data;
+  }
 }

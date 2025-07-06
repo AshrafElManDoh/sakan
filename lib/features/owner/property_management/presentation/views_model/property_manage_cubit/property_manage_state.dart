@@ -19,6 +19,12 @@ final class PropertyManageSuccessApartments extends PropertyManageState {
   PropertyManageSuccessApartments({required this.apartmentList});
 }
 
+final class PropertyManagedeleteApartment extends PropertyManageState {
+  final String msg;
+
+  PropertyManagedeleteApartment({required this.msg});
+}
+
 final class PropertyManageSuccessRooms extends PropertyManageState {
   final List<RoomModel> roomList;
 

@@ -6,6 +6,8 @@ import 'package:sakan/features/owner/property_management/presentation/views/widg
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/property_container_header.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/room_table.dart';
 import 'package:sakan/features/owner/property_management/presentation/views_model/property_manage_cubit/property_manage_cubit.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class PropertyManageBody extends StatefulWidget {
   const PropertyManageBody({super.key});
@@ -19,7 +21,7 @@ class _PropertyManageBodyState extends State<PropertyManageBody> {
 
   @override
   void initState() {
-    ownerId = BlocProvider.of<PropertyManageCubit>(context).comingOwnerId = 3;
+    ownerId = BlocProvider.of<PropertyManageCubit>(context).comingOwnerId = 2;
     BlocProvider.of<PropertyManageCubit>(context).getApartments();
     super.initState();
   }
@@ -82,7 +84,16 @@ class _PropertyManageBodyState extends State<PropertyManageBody> {
                       const SizedBox(height: 16),
 
                       /// 🧱 جدول العرض
-                      BlocBuilder<PropertyManageCubit, PropertyManageState>(
+                      BlocConsumer<PropertyManageCubit, PropertyManageState>(
+                        listener: (context, state) {
+                          if (state is PropertyManagedeleteApartment) {
+                            showTopSnackBar(Overlay.of(context),
+                                CustomSnackBar.success(message: state.msg));
+                          } else if (state is PropertyManageFailure) {
+                            showTopSnackBar(Overlay.of(context),
+                                CustomSnackBar.error(message: state.errmsg));
+                          }
+                        },
                         builder: (context, state) {
                           if (state is PropertyManageSuccessApartments) {
                             return ApartmentTable(

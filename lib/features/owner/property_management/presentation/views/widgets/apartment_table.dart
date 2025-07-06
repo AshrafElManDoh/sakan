@@ -57,7 +57,40 @@ class ApartmentTable extends StatelessWidget {
                     icon: Icon(Icons.edit, size: 20),
                   ),
                   SizedBox(width: 10),
-                  Icon(Icons.delete, size: 20),
+                  IconButton(
+                    icon: Icon(Icons.delete, size: 20),
+                    onPressed: () {
+                      final cubit = context.read<PropertyManageCubit>();
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Confirm Delete"),
+                          content: Text(
+                              "Are you sure you want to delete this apartment?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pop(); // إغلاق البوب أب بدون حذف
+                              },
+                              child: Text("Cancel"),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // إغلاق البوب أب
+                                cubit.deleteApartment(
+                                    apartmentId: apartments[index].id!);
+                              },
+                              child: Text(
+                                "Delete",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ],
               )),
             ],
