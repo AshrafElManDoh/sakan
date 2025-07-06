@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sakan/core/utils/app_router.dart';
-import 'package:sakan/features/home/data/models/room_model/room_model.dart';
+import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 
-class RoomTable extends StatelessWidget {
-  const RoomTable({super.key, required this.rooms});
-  final List<RoomModel> rooms;
-
+class ApartmentTable extends StatelessWidget {
+  const ApartmentTable({super.key, required this.apartments});
+  final List<ApartmentModel> apartments ;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -15,13 +14,12 @@ class RoomTable extends StatelessWidget {
         columns: const [
           DataColumn(label: Text("Name")),
           DataColumn(label: Text("Status")),
-          DataColumn(label: Text("Apartment ID")),
           DataColumn(label: Text("Price")),
           DataColumn(label: Text("Listing ID")),
           DataColumn(label: Text("Actions")),
         ],
         rows: List.generate(
-          rooms.length,
+          apartments.length,
           (index) => DataRow(
             cells: [
               DataCell(Row(
@@ -36,13 +34,12 @@ class RoomTable extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text('Room ${index + 1}'),
+                  Text('Apartment ${index + 1}'),
                 ],
               )),
               DataCell(_buildStatusBadge(index)),
-              DataCell(Text("${rooms[index].apartmentId}")),
-              DataCell(Text("${rooms[index].pricePerMonth} EGP")),
-              DataCell(Text("${rooms[index].id}")),
+              DataCell(Text("${apartments[index].pricePerMonthdto} EGP")),
+              DataCell(Text("${apartments[index].id}")),
               DataCell(Row(
                 children: [
                   IconButton(

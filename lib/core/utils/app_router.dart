@@ -21,11 +21,13 @@ import 'package:sakan/features/introduction/presentation/views/introduction_view
 import 'package:sakan/features/map/presentation/views/map_view.dart';
 import 'package:sakan/features/owner/booking_request/presentation/views/booking_requests_view.dart';
 import 'package:sakan/features/owner/dashboard/presentation/views/dashboard_view.dart';
+import 'package:sakan/features/owner/property_management/data/repos/property_manage_repo_imp.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/add_apartment_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/property_management_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/add_room_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/edit_apartment_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/edit_room_view.dart';
+import 'package:sakan/features/owner/property_management/presentation/views_model/property_manage_cubit/property_manage_cubit.dart';
 import 'package:sakan/features/profile/presentation/views/profile_view.dart';
 import 'package:sakan/features/search/presentation/views/search_view.dart';
 
@@ -120,7 +122,11 @@ abstract class AppRouter {
             GoRoute(
                 path: propertyManagementView,
                 pageBuilder: (context, state) => NoTransitionPage(
-                      child: PropertyManagementView(),
+                      child: BlocProvider(
+                        create: (context) => PropertyManageCubit(
+                            getIt.get<PropertyManageRepoImp>()),
+                        child: PropertyManagementView(),
+                      ),
                     ),
                 routes: [
                   GoRoute(

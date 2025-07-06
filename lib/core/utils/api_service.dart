@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final _baseUrl = 'http://sakan.runasp.net/api/';
+  final _baseUrl = 'https://sakan.runasp.net/api/';
   final Dio _dio;
   ApiService(this._dio);
 
