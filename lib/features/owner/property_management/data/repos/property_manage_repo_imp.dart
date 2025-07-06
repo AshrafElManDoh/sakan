@@ -51,12 +51,29 @@ class PropertyManageRepoImp implements PropertyManageRepo {
       {required int apartmentId}) async {
     try {
       var response = await apiService.get(
-          endPoint: "Rooms/InApartment", queryParams: {"apartmentId": apartmentId});
+          endPoint: "Rooms/InApartment",
+          queryParams: {"apartmentId": apartmentId});
       List<RoomModel> rooms = [];
       for (var room in response) {
         rooms.add(RoomModel.fromJson(room));
       }
       return right(rooms);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErrors(e));
+      } else {
+        return left(ServerFailure(errmsg: e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> editAparment(
+      {required FormData formdata, required int apartmentId}) async {
+    try {
+      var response = await apiService.put(
+          endPoint: "Apartment/$apartmentId", data: formdata);
+      return right(response);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioErrors(e));

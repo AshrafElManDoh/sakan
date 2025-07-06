@@ -135,7 +135,9 @@ abstract class AppRouter {
                   ),
                   GoRoute(
                     path: editApartmentView,
-                    builder: (context, state) => EditApartmentView(),
+                    builder: (context, state) => EditApartmentView(
+                      apartmentModel: state.extra as ApartmentModel,
+                    ),
                   ),
                   GoRoute(
                     path: editRoomView,

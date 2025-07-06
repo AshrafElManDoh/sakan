@@ -4,7 +4,6 @@ import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/core/widgets/custom_description_field.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
 import 'package:sakan/core/widgets/custom_text_field_inside.dart';
-import 'package:sakan/core/widgets/custom_upload_photos.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/drop_down_apartments.dart';
 
 class AddRoomBody extends StatelessWidget {
@@ -46,7 +45,7 @@ class AddRoomBody extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            CustomUploadPhotos(title: "Upload Apartment Photos"),
+            // CustomUploadPhotos(title: "Upload Apartment Photos"),
             SizedBox(
               height: 16,
             ),

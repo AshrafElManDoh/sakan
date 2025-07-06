@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/core/widgets/custom_description_field.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
 import 'package:sakan/core/widgets/custom_text_field_inside.dart';
 import 'package:sakan/core/widgets/custom_upload_photos.dart';
@@ -36,6 +37,7 @@ class AddApartmentBody extends StatelessWidget {
         } else if (state is AddApartmentLoading) {}
       },
       builder: (context, state) {
+        final cubit = BlocProvider.of<AddApartmentCubit>(context);
         return ModalProgressHUD(
           inAsyncCall: state is AddApartmentLoading,
           child: Padding(
@@ -71,8 +73,8 @@ class AddApartmentBody extends StatelessWidget {
                   SizedBox(
                     height: 16,
                   ),
-                  CustomTextFieldInside(
-                    title: "Descriptipn",
+                  CustomDescriptionField(
+                    title: "Description",
                     textEditingController:
                         BlocProvider.of<AddApartmentCubit>(context)
                             .descriptionController,
@@ -140,7 +142,7 @@ class AddApartmentBody extends StatelessWidget {
                   SizedBox(
                     height: 16,
                   ),
-                  CustomUploadPhotos(title: "Upload Apartment Photos"),
+                  CustomUploadPhotos(title: "Upload Apartment Photos",images: cubit.images,onTap: cubit.pickImages,),
                   SizedBox(
                     height: 16,
                   ),

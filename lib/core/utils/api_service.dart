@@ -16,6 +16,17 @@ class ApiService {
     return response.data;
   }
 
+  Future<dynamic> put({
+    required String endPoint,
+    required Object data,
+  }) async {
+    var response = await _dio.put(
+      '$_baseUrl$endPoint',
+      data: data,
+    );
+    return response.data;
+  }
+
   Future<dynamic> postID({
     required String url,
     required Object data,
