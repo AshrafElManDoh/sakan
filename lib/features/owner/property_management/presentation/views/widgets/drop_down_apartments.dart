@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
-import 'package:sakan/features/owner/property_management/presentation/views_model/add_room_cubit/add_room_cubit.dart';
 
 class DropDownApartments extends StatelessWidget {
-  const DropDownApartments({super.key, required this.apartments});
+  const DropDownApartments(
+      {super.key, required this.apartments, this.value, this.onChanged});
   final List<ApartmentModel> apartments;
+  final int? value;
+  final void Function(int?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<AddRoomCubit>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,7 +23,7 @@ class DropDownApartments extends StatelessWidget {
           height: 16,
         ),
         DropdownButtonFormField<int>(
-          value: cubit.selectedValueFromDropdownList,
+          value: value,
           items: List.generate(
             apartments.length,
             (index) {
@@ -33,9 +33,7 @@ class DropDownApartments extends StatelessWidget {
               );
             },
           ),
-          onChanged: (newValue) {
-            cubit.selectedValueFromDropdownList = newValue!;
-          },
+          onChanged: onChanged,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,

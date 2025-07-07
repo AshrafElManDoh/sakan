@@ -9,6 +9,7 @@ import 'package:sakan/features/authentication/presentation/views/sign_up_view.da
 import 'package:sakan/features/authentication/presentation/views/student_or_owner_view.dart';
 import 'package:sakan/features/authentication/presentation/views/upload_id_card_view.dart';
 import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
+import 'package:sakan/features/home/data/models/room_model/room_model.dart';
 import 'package:sakan/features/home/data/repos/home_repo_imp.dart';
 import 'package:sakan/features/home/presentation/views/apartment_details_view.dart';
 import 'package:sakan/features/home/presentation/views/choose_college_view.dart';
@@ -141,11 +142,19 @@ abstract class AppRouter {
                   ),
                   GoRoute(
                     path: editRoomView,
-                    builder: (context, state) => EditRoomView(),
+                    builder: (context, state) {
+                      final extra = state.extra as Map<String, dynamic>;
+                      final roomModel = extra["room"] as RoomModel;
+                      final ownerId = extra["ownerId"] as int;
+                      return EditRoomView(
+                          roomModel: roomModel, ownerid: ownerId);
+                    },
                   ),
                   GoRoute(
                     path: addRoomView,
-                    builder: (context, state) => AddRoomView(ownerId: state.extra as int,),
+                    builder: (context, state) => AddRoomView(
+                      ownerId: state.extra as int,
+                    ),
                   ),
                 ]),
             GoRoute(
