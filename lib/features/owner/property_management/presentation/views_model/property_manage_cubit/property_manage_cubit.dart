@@ -76,9 +76,21 @@ class PropertyManageCubit extends Cubit<PropertyManageState> {
 
     response.fold((failure) {
       emit(PropertyManageFailure(errmsg: failure.errmsg));
-    }, (map) async{
+    }, (map) async {
       emit(PropertyManagedeleteApartment(msg: map['message']));
       await getApartments();
+    });
+  }
+
+  deleteRoom({required int roomId}) async {
+    emit(PropertyManageLoading());
+    var response = await propertyManageRepo.deleteRoom(roomId: roomId);
+
+    response.fold((failure) {
+      emit(PropertyManageFailure(errmsg: failure.errmsg));
+    }, (msg) async {
+      emit(PropertyManagedeleteApartment(msg: msg));
+      await fetchAllRoomsForOwner(comingOwnerId);
     });
   }
 }

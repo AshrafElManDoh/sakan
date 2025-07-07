@@ -129,4 +129,18 @@ class PropertyManageRepoImp implements PropertyManageRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deleteRoom({required int roomId}) async {
+    try {
+      await apiService.delete(endPoint: "Rooms/$roomId");
+      return right("Room is deleted");
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErrors(e));
+      } else {
+        return left(ServerFailure(errmsg: e.toString()));
+      }
+    }
+  }
 }

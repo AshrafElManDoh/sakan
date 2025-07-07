@@ -25,6 +25,12 @@ final class PropertyManagedeleteApartment extends PropertyManageState {
   PropertyManagedeleteApartment({required this.msg});
 }
 
+final class PropertyManagedeleteRoom extends PropertyManageState {
+  final String msg;
+
+  PropertyManagedeleteRoom({required this.msg});
+}
+
 final class PropertyManageSuccessRooms extends PropertyManageState {
   final List<RoomModel> roomList;
 
