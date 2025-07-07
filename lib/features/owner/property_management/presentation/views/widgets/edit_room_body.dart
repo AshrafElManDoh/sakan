@@ -4,7 +4,6 @@ import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/core/widgets/custom_description_field.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
 import 'package:sakan/core/widgets/custom_text_field_inside.dart';
-import 'package:sakan/features/owner/property_management/presentation/views/widgets/drop_down_apartments.dart';
 
 class EditRoomBody extends StatelessWidget {
   const EditRoomBody({super.key});
@@ -37,7 +36,7 @@ class EditRoomBody extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            DropDownApartments(),
+            // DropDownApartments(),
             SizedBox(
               height: 16,
             ),

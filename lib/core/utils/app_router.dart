@@ -145,7 +145,7 @@ abstract class AppRouter {
                   ),
                   GoRoute(
                     path: addRoomView,
-                    builder: (context, state) => AddRoomView(),
+                    builder: (context, state) => AddRoomView(ownerId: state.extra as int,),
                   ),
                 ]),
             GoRoute(

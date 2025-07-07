@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
+import 'package:sakan/features/owner/property_management/presentation/views_model/add_room_cubit/add_room_cubit.dart';
 
-class DropDownApartments extends StatefulWidget {
-  const DropDownApartments({super.key});
+class DropDownApartments extends StatelessWidget {
+  const DropDownApartments({super.key, required this.apartments});
+  final List<ApartmentModel> apartments;
 
-  @override
-  State<DropDownApartments> createState() => _DropDownApartmentsState();
-}
-
-class _DropDownApartmentsState extends State<DropDownApartments> {
-  String? selectedValue;
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<AddRoomCubit>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,20 +22,19 @@ class _DropDownApartmentsState extends State<DropDownApartments> {
         SizedBox(
           height: 16,
         ),
-        DropdownButtonFormField<String>(
-          value: selectedValue,
-          items: [
-            DropdownMenuItem(
-              child: Text("Casa da Alegria"),
-              value: "Casa da Alegria",
-            ),
-            DropdownMenuItem(
-              child: Text("Casa Monteiro II"),
-              value: "Casa Monteiro II",
-            ),
-          ],
+        DropdownButtonFormField<int>(
+          value: cubit.selectedValueFromDropdownList,
+          items: List.generate(
+            apartments.length,
+            (index) {
+              return DropdownMenuItem(
+                child: Text(apartments[index].titledto!),
+                value: apartments[index].id,
+              );
+            },
+          ),
           onChanged: (newValue) {
-            selectedValue = newValue;
+            cubit.selectedValueFromDropdownList = newValue!;
           },
           decoration: InputDecoration(
             filled: true,

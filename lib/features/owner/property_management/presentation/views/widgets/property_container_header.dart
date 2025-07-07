@@ -1,9 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/search_field.dart';
+import 'package:sakan/features/owner/property_management/presentation/views_model/property_manage_cubit/property_manage_cubit.dart';
 
 class PropertyContainerHeader extends StatelessWidget {
   const PropertyContainerHeader({super.key});
@@ -28,7 +30,8 @@ class PropertyContainerHeader extends StatelessWidget {
               color: ksecondaryColor,
               onTap: () {
                 context.push(
-                    '${AppRouter.propertyManagementView}/${AppRouter.addRoomView}');
+                    '${AppRouter.propertyManagementView}/${AppRouter.addRoomView}',
+                    extra: context.read<PropertyManageCubit>().comingOwnerId);
               },
             ),
           ],
