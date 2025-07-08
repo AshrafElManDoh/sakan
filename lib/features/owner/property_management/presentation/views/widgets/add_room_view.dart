@@ -7,7 +7,7 @@ import 'package:sakan/features/owner/property_management/presentation/views_mode
 
 class AddRoomView extends StatelessWidget {
   const AddRoomView({super.key, required this.ownerId});
-  final int ownerId ;
+  final int ownerId;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,8 @@ class AddRoomView extends StatelessWidget {
         forceMaterialTransparency: true,
       ),
       body: BlocProvider(
-        create: (context) => AddRoomCubit(getIt.get<PropertyManageRepoImp>())..getApartments(comingOwnerId: ownerId),
+        create: (context) => AddRoomCubit(getIt.get<PropertyManageRepoImp>())
+          ..getApartments(comingOwnerId: ownerId),
         child: AddRoomBody(),
       ),
     );

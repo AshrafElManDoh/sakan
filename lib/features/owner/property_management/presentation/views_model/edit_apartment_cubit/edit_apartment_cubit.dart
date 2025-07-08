@@ -21,17 +21,17 @@ class EditApartmentCubit extends Cubit<EditApartmentState> {
   TextEditingController longitudeController = TextEditingController();
   List<String>? imagePaths;
   LocationService locationService = LocationService();
-  List<XFile>? images; // 
+  List<XFile>? images; //
 
   final ImagePicker picker = ImagePicker();
 
-  
   Future<void> pickImages() async {
     images = await picker.pickMultiImage();
     emit(EditApartmentPhotosSuccess(msg: "Images selected successfully"));
   }
+
   Future<void> editApartment({
-    required int id ,
+    required int id,
     required String title,
     required int price,
     required int ownerID,
@@ -69,7 +69,8 @@ class EditApartmentCubit extends Cubit<EditApartmentState> {
     });
 
     // ✅ استدعاء repo
-    var response = await propertyManageRepo.editAparment(formdata: formData,apartmentId: id);
+    var response = await propertyManageRepo.editAparment(
+        formdata: formData, apartmentId: id);
     response.fold(
       (failure) {
         emit(EditApartmentFailure(errmsg: failure.errmsg));

@@ -36,4 +36,5 @@ final class EditRoomFetchApartments extends EditRoomState {
 }
 
 final class EditRoomLoading extends EditRoomState {}
+
 final class EditRoomSwitch extends EditRoomState {}

@@ -5,15 +5,17 @@ import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/features/home/data/models/room_model/room_model.dart';
 
 class RoomItem extends StatelessWidget {
-  const RoomItem({super.key, required this.room});
+  const RoomItem({super.key, required this.room, required this.index});
   final RoomModel room;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         context.push(
-            "${AppRouter.homeView}/${AppRouter.apartmentDetailsView}/${AppRouter.roomDetailsView}");
+            "${AppRouter.homeView}/${AppRouter.apartmentDetailsView}/${AppRouter.roomDetailsView}",
+            extra: room);
       },
       child: AspectRatio(
         aspectRatio: 145 / 157,
@@ -35,7 +37,7 @@ class RoomItem extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                "Room ${room.id}",
+                "Room ${index + 1}",
                 style: AppStyles.stylesBold16,
               ),
               // SizedBox(
@@ -86,7 +88,7 @@ class RoomItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    '\$300/month',
+                    '${room.pricePerMonth} EGP/month',
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),

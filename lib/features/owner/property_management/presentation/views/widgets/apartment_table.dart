@@ -15,7 +15,7 @@ class ApartmentTable extends StatelessWidget {
       child: DataTable(
         columns: const [
           DataColumn(label: Text("Name")),
-          DataColumn(label: Text("Status")),
+          // DataColumn(label: Text("Status")),
           DataColumn(label: Text("Price")),
           DataColumn(label: Text("Listing ID")),
           DataColumn(label: Text("Actions")),
@@ -39,7 +39,7 @@ class ApartmentTable extends StatelessWidget {
                   Text('Apartment ${index + 1}'),
                 ],
               )),
-              DataCell(_buildStatusBadge(index)),
+              // DataCell(_buildStatusBadge(index)),
               DataCell(Text("${apartments[index].pricePerMonthdto} EGP")),
               DataCell(Text("${apartments[index].id}")),
               DataCell(Row(

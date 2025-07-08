@@ -27,7 +27,7 @@ class ApiService {
     return response.data;
   }
 
-  Future<dynamic> postID({
+  Future<dynamic> postForAI({
     required String url,
     required Object data,
   }) async {

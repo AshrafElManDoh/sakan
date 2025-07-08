@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:sakan/core/errors/failure.dart';
 import 'package:sakan/core/utils/api_service.dart';
+import 'package:sakan/features/home/data/models/ai_response_model/ai_response_model.dart';
 import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 import 'package:sakan/features/home/data/models/college_model/college_model.dart';
 import 'package:sakan/features/home/data/models/room_model/room_model.dart';
@@ -83,6 +84,24 @@ class HomeRepoImp implements HomeRepo {
         rooms.add(RoomModel.fromJson(room));
       }
       return right(rooms);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErrors(e));
+      } else {
+        return left(ServerFailure(errmsg: e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, AiResponseModel>> getAiResponse(
+      {required roomLink}) async {
+    try {
+      var response = await apiService.postForAI(
+          url: "https://room-analyzer-production.up.railway.app/extract",
+          data: {"image_url": roomLink});
+      AiResponseModel aiResponseModel = AiResponseModel.fromJson(response);
+      return right(aiResponseModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioErrors(e));

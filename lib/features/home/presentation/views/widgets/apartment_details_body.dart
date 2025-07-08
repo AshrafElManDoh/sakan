@@ -78,11 +78,12 @@ class ApartmentDetailsBody extends StatelessWidget {
           sliver: SliverToBoxAdapter(
             child: BlocConsumer<GetRoomsCubit, GetRoomsState>(
               listener: (context, state) {
-                if(state is GetRoomsSuccess)
-                {
-                  showTopSnackBar(Overlay.of(context),CustomSnackBar.success(message: "Success"));
-                }else if (state is  GetRoomsFailure){
-                  showTopSnackBar(Overlay.of(context),CustomSnackBar.error(message: "failure"));
+                if (state is GetRoomsSuccess) {
+                  showTopSnackBar(Overlay.of(context),
+                      CustomSnackBar.success(message: "Success"));
+                } else if (state is GetRoomsFailure) {
+                  showTopSnackBar(Overlay.of(context),
+                      CustomSnackBar.error(message: "failure"));
                 }
               },
               builder: (context, state) {

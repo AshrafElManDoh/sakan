@@ -17,6 +17,7 @@ import 'package:sakan/features/home/presentation/views/choose_university_view.da
 import 'package:sakan/features/home/presentation/views/home_view.dart';
 import 'package:sakan/features/home/presentation/views/main_view.dart';
 import 'package:sakan/features/home/presentation/views/room_details_view.dart';
+import 'package:sakan/features/home/presentation/views_model/get_ai_information_cubit/get_ai_information_cubit.dart';
 import 'package:sakan/features/home/presentation/views_model/get_rooms_cubit/get_rooms_cubit.dart';
 import 'package:sakan/features/introduction/presentation/views/introduction_view.dart';
 import 'package:sakan/features/map/presentation/views/map_view.dart';
@@ -65,7 +66,7 @@ abstract class AppRouter {
   static const addRoomView = 'addRoom';
 
   static final router = GoRouter(
-    initialLocation: propertyManagementView,
+    initialLocation: homeView,
     routes: [
       // ✅ ShellRoute for pages with BottomNavigationBar
       ShellRoute(
@@ -93,7 +94,13 @@ abstract class AppRouter {
                 routes: [
                   GoRoute(
                     path: AppRouter.roomDetailsView,
-                    builder: (context, state) => const RoomDetailsView(),
+                    builder: (context, state) => BlocProvider(
+                      create: (context) =>
+                          GetAiInformationCubit(getIt.get<HomeRepoImp>()),
+                      child: RoomDetailsView(
+                        roomModel: state.extra as RoomModel,
+                      ),
+                    ),
                   ),
                 ],
               ),

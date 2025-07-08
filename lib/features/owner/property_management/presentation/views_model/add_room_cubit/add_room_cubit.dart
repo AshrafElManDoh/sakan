@@ -16,9 +16,9 @@ class AddRoomCubit extends Cubit<AddRoomState> {
   TextEditingController descriptionController = TextEditingController();
 
   List<XFile>? images; // ✅ متغير لحفظ الصور المختارة
-  List<ApartmentModel> apartmentList =[];
+  List<ApartmentModel> apartmentList = [];
   final ImagePicker picker = ImagePicker();
-  int? selectedValueFromDropdownList ;
+  int? selectedValueFromDropdownList;
 
   // ✅ اختيار صور من المعرض
   Future<void> pickImages() async {
@@ -35,7 +35,7 @@ class AddRoomCubit extends Cubit<AddRoomState> {
         emit(AddRoomFailure(errmsg: failure.errmsg));
       },
       (apartments) {
-        apartmentList=apartments ;
+        apartmentList = apartments;
         emit(AddRoomFetchApartments(apartments: apartmentList));
       },
     );

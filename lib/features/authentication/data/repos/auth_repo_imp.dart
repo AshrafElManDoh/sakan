@@ -108,8 +108,8 @@ class AuthRepoImp implements AuthRepo {
   Future<Either<Failure, IdCardModel>> uploadId(
       {required FormData formdata}) async {
     try {
-      var response = await apiService.postID(
-          url: "https://gemini-api-production-8e7d.up.railway.app/extract",
+      var response = await apiService.postForAI(
+          url: "https://gemini-api-production-4516.up.railway.app/extract",
           data: formdata);
       IdCardModel idCard = IdCardModel.fromJson(response);
       return right(idCard);

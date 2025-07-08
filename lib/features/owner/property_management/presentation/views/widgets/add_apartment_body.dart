@@ -142,7 +142,11 @@ class AddApartmentBody extends StatelessWidget {
                   SizedBox(
                     height: 16,
                   ),
-                  CustomUploadPhotos(title: "Upload Apartment Photos",images: cubit.images,onTap: cubit.pickImages,),
+                  CustomUploadPhotos(
+                    title: "Upload Apartment Photos",
+                    images: cubit.images,
+                    onTap: cubit.pickImages,
+                  ),
                   SizedBox(
                     height: 16,
                   ),

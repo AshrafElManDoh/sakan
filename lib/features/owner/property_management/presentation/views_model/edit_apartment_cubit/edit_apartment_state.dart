@@ -18,6 +18,7 @@ final class EditApartmentSuccess extends EditApartmentState {
 
   EditApartmentSuccess({required this.msg});
 }
+
 final class EditApartmentPhotosSuccess extends EditApartmentState {
   final String msg;
 

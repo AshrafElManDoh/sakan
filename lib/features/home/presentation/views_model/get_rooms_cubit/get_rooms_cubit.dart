@@ -9,7 +9,7 @@ class GetRoomsCubit extends Cubit<GetRoomsState> {
   GetRoomsCubit(this.homeRepo) : super(GetRoomsInitial());
   final HomeRepo homeRepo;
 
-  int? id ;
+  int? id;
 
   Future<void> getRooms() async {
     emit(GetRoomsLoading());

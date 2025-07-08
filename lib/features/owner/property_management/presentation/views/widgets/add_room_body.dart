@@ -80,7 +80,7 @@ class AddRoomBody extends StatelessWidget {
                     apartments: cubit.apartmentList,
                     value: cubit.selectedValueFromDropdownList,
                     onChanged: (newValue) {
-                      cubit.selectedValueFromDropdownList = newValue ;
+                      cubit.selectedValueFromDropdownList = newValue;
                     },
                   ),
                   SizedBox(
