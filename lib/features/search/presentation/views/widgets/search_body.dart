@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/features/home/presentation/views/widgets/apartments_list_view.dart';
 import 'package:sakan/features/search/presentation/views/widgets/price_section.dart';
 import 'package:sakan/features/search/presentation/views/widgets/rooms_and_beds_section.dart';
 import 'package:sakan/features/search/presentation/views/widgets/search_field_with_setting_icon.dart';
+import 'package:sakan/features/search/presentation/views_model/search_cubit/search_cubit.dart';
 
 class SearchBody extends StatelessWidget {
   const SearchBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 32,
+    return BlocBuilder<SearchCubit, SearchState>(
+      builder: (context, state) {
+        final cubit = BlocProvider.of<SearchCubit>(context);
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    SizedBox(height: 32),
+                    SearchFieldWithSettingIcon(),
+                    SizedBox(height: 32),
+                  ],
                 ),
-                SearchFieldWithSettingIcon(),
-                SizedBox(
-                  height: 32,
-                ),
-              ],
-            ),
+              ),
+              if (cubit.showFilters)
+                PriceAndRoomsAndPropertySections()
+              else if (state is SearchSuccess)
+                ApartmentsListView(apartments: state.apartments),
+            ],
           ),
-          PriceAndRoomsAndPropertySections(),
-          // ShowResultWidget(),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -60,7 +66,10 @@ class PriceAndRoomsAndPropertySections extends StatelessWidget {
           ),
           Align(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                BlocProvider.of<SearchCubit>(context).toggleFilters();
+                BlocProvider.of<SearchCubit>(context).applyFilters();
+              },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 60, vertical: 20),
                 decoration: BoxDecoration(

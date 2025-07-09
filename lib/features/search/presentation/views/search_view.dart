@@ -13,7 +13,7 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => SearchCubit(getIt.get<SearchRepoImp>()),
+          create: (context) => SearchCubit(getIt.get<SearchRepoImp>())..search(),
           child: SearchBody(),
         ),
       ),

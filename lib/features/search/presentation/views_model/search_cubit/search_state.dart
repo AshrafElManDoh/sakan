@@ -20,3 +20,7 @@ final class SearchFailure extends SearchState {
 final class SearchLoading extends SearchState {}
 
 final class SearchView extends SearchState {}
+
+final class ToggleFilterState extends SearchState {}
+
+final class SortOrderChanged extends SearchState {}

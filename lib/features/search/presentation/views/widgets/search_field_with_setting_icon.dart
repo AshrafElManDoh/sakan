@@ -10,6 +10,7 @@ class SearchFieldWithSettingIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<SearchCubit>(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -32,20 +33,26 @@ class SearchFieldWithSettingIcon extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          width: 16,
+        SizedBox(width: 16),
+        GestureDetector(
+          onTap: () {
+            cubit.toggleFilters();
+          },
+          child: Container(
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: cubit.showFilters ? Colors.transparent : ksecondaryColor,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                color: ksecondaryColor,
+              ),
+            ),
+            child: Icon(
+              FontAwesomeIcons.sliders,
+              color: cubit.showFilters ? ksecondaryColor : Colors.white,
+            ),
+          ),
         ),
-        Container(
-          padding: EdgeInsets.all(15),
-          decoration: BoxDecoration(
-            color: ksecondaryColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Icon(
-            FontAwesomeIcons.sliders,
-            color: Colors.white,
-          ),
-        )
       ],
     );
   }
