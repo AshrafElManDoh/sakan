@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sakan/constants.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/features/search/presentation/views/widgets/price_section.dart';
-import 'package:sakan/features/search/presentation/views/widgets/property_facilites_section.dart';
 import 'package:sakan/features/search/presentation/views/widgets/rooms_and_beds_section.dart';
 import 'package:sakan/features/search/presentation/views/widgets/search_field_with_setting_icon.dart';
 
@@ -52,10 +51,10 @@ class PriceAndRoomsAndPropertySections extends StatelessWidget {
             height: 16,
           ),
           RoomsAndBedsSection(),
-          SizedBox(
-            height: 16,
-          ),
-          PropertyFacilitesSection(),
+          // SizedBox(
+          //   height: 16,
+          // ),
+          // PropertyFacilitesSection(),
           SizedBox(
             height: 32,
           ),

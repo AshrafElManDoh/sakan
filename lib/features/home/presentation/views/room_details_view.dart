@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/utils/app_styles.dart';
+import 'package:sakan/features/authentication/presentation/views/widgets/custom_button.dart';
 import 'package:sakan/features/home/data/models/ai_response_model/ai_response_model.dart';
 import 'package:sakan/features/home/data/models/room_model/room_model.dart';
 import 'package:sakan/features/home/presentation/views/widgets/apartment_images_widget.dart';
@@ -114,7 +117,18 @@ class _RoomDetailsViewState extends State<RoomDetailsView> {
                       _buildInfoItem(
                           "Wall Condition", aiResponse!.wallCondition),
                       _buildInfoItem("Rental Tips", aiResponse!.rentalTips),
-                    ]
+                    ],CustomButton(
+                      name: "Book this room",
+                      onTap: () async {
+                        await Future.delayed(Duration(milliseconds: 2000));
+                        showTopSnackBar(
+                          Overlay.of(context),
+                          CustomSnackBar.success(
+                              message: "The room is booked successfully"),
+                        );
+                        GoRouter.of(context).go(AppRouter.homeView);
+                      },
+                    )
                   ],
                 ),
               ),
