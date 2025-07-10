@@ -20,7 +20,7 @@ class HomeBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 CustomChooseText(
-                    text: "The nearest apartment to your University"),
+                    text: "The best apartment for your college"),
                 SizedBox(height: 32),
               ],
             ),

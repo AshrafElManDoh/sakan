@@ -5,8 +5,10 @@ class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
     super.key,
     this.onChanged,
+    required this.hintText,
   });
   final void Function(String)? onChanged;
+  final String hintText;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +18,7 @@ class CustomSearchField extends StatelessWidget {
       child: TextField(
         onChanged: onChanged,
         decoration: InputDecoration(
-          hintText: "Search for other cities",
+          hintText: hintText,
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(

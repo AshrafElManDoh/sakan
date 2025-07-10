@@ -32,21 +32,21 @@ class ApartmentWidget extends StatelessWidget {
                       child: Text("There is no photos !"),
                     ),
                   ),
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Color(0xff255685),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        '2.1 km',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: 10,
+                  //   left: 10,
+                  //   child: Container(
+                  //     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  //     decoration: BoxDecoration(
+                  //       color: Color(0xff255685),
+                  //       borderRadius: BorderRadius.circular(8),
+                  //     ),
+                  //     child: Text(
+                  //       '2.1 km',
+                  //       style: TextStyle(color: Colors.white, fontSize: 14),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

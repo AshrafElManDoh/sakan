@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:sakan/core/utils/app_prefs_helper.dart';
 import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_break_line.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_button.dart';
@@ -11,6 +12,7 @@ import 'package:sakan/features/authentication/presentation/views/widgets/custom_
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_social.dart';
 import 'package:sakan/features/authentication/presentation/views/widgets/custom_text_field.dart';
 import 'package:sakan/features/authentication/presentation/views_model/register_cubit/register_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -30,7 +32,7 @@ class SignUpBody extends StatelessWidget {
               Overlay.of(context),
               CustomSnackBar.success(message: state.msg),
             );
-            GoRouter.of(context).push(AppRouter.loginView);
+            GoRouter.of(context).go(AppRouter.uploadIdCardView);
           } else if (state is RegisterFailure) {
             showTopSnackBar(
               Overlay.of(context),
@@ -151,6 +153,7 @@ class SignUpBody extends StatelessWidget {
                             role: role,
                           );
                         }
+                        await setEmail(context);
                       },
                     ),
                     SizedBox(
@@ -172,5 +175,14 @@ class SignUpBody extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Future<void> setEmail(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(AppPrefsHelper.keyEmail,
+        BlocProvider.of<RegisterCubit>(context).emailController.text);
+    await prefs.setString(AppPrefsHelper.keyfullName,
+        BlocProvider.of<RegisterCubit>(context).nameController.text);
+    await prefs.setString("role", role);
   }
 }

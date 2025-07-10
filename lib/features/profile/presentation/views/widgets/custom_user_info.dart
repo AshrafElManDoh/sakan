@@ -7,7 +7,9 @@ import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
 
 class CustomUserInfo extends StatefulWidget {
-  const CustomUserInfo({super.key});
+  const CustomUserInfo({super.key, required this.name, required this.email});
+  final String name ;
+  final String email ;
 
   @override
   State<CustomUserInfo> createState() => _CustomUserInfoState();
@@ -42,19 +44,19 @@ class _CustomUserInfoState extends State<CustomUserInfo> {
             radius: 50,
             backgroundImage: _imageFile != null
                 ? FileImage(_imageFile!)
-                : AssetImage("assets/icon/Oval.png"),
+                : AssetImage("assets/icon/person.jpg"),
           ),
           Column(
             children: [
               Text(
-                "Anna Karlsson",
+                widget.name,
                 style: AppStyles.stylesSemiBold13,
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
-                "anna.karlsson@gmail.com",
+                widget.email,
                 style: AppStyles.stylesRegular12.copyWith(
                   color: kthirdColor,
                 ),

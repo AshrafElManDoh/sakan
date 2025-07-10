@@ -31,11 +31,17 @@ class RoomTable extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      'assets/icon/apartment.png',
+                    child: Image.network(
+                      rooms[index].imagePaths![0],
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Image.asset(
+                        "assets/icon/apartment.png",
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/constants.dart';
+import 'package:sakan/core/utils/app_prefs_helper.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/apartment_table.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/property_container_header.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/room_table.dart';
 import 'package:sakan/features/owner/property_management/presentation/views_model/property_manage_cubit/property_manage_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -18,12 +20,19 @@ class PropertyManageBody extends StatefulWidget {
 
 class _PropertyManageBodyState extends State<PropertyManageBody> {
   late int ownerId;
-
+  late String name="";
   @override
   void initState() {
     ownerId = BlocProvider.of<PropertyManageCubit>(context).comingOwnerId = 2;
+    getName();
     BlocProvider.of<PropertyManageCubit>(context).getApartments();
     super.initState();
+  }
+
+  getName() async {
+    final prefs = await SharedPreferences.getInstance();
+    name = await prefs.getString(AppPrefsHelper.keyfullName) ?? "";
+    setState(() {});
   }
 
   @override
@@ -37,7 +46,7 @@ class _PropertyManageBodyState extends State<PropertyManageBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Welcome back, Pedro Sevila ",
+                  "Welcome , $name ",
                   style: AppStyles.stylesSemiBold20,
                 ),
                 const SizedBox(height: 10),

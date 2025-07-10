@@ -1,11 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sakan/constants.dart';
+import 'package:sakan/core/utils/app_prefs_helper.dart';
+import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/core/widgets/custom_profile_button.dart';
 import 'package:sakan/core/widgets/custom_text_field_inside.dart';
 import 'package:sakan/features/authentication/presentation/views_model/upload_id_card_cubit/upload_id_card_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -28,6 +32,7 @@ class UploadIdCardBody extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final cubit = BlocProvider.of<UploadIdCardCubit>(context);
         return ModalProgressHUD(
           inAsyncCall: state is UploadIdCardLoading,
           child: Padding(
@@ -48,10 +53,8 @@ class UploadIdCardBody extends StatelessWidget {
                       title: "Add card",
                       color: ksecondaryColor,
                       onTap: () async {
-                        await BlocProvider.of<UploadIdCardCubit>(context)
-                            .uploadImage();
-                        BlocProvider.of<UploadIdCardCubit>(context)
-                            .uploadIdCard();
+                        await cubit.uploadImage();
+                        cubit.uploadIdCard();
                       },
                     ),
                   ],
@@ -61,9 +64,7 @@ class UploadIdCardBody extends StatelessWidget {
                 ),
                 CustomTextFieldInside(
                   makeActive: false,
-                  textEditingController:
-                      BlocProvider.of<UploadIdCardCubit>(context)
-                          .firstNamecontroller,
+                  textEditingController: cubit.firstNamecontroller,
                   title: "First Name",
                 ),
                 SizedBox(
@@ -71,9 +72,7 @@ class UploadIdCardBody extends StatelessWidget {
                 ),
                 CustomTextFieldInside(
                   makeActive: false,
-                  textEditingController:
-                      BlocProvider.of<UploadIdCardCubit>(context)
-                          .lastNamecontroller,
+                  textEditingController: cubit.lastNamecontroller,
                   title: "Last Name",
                 ),
                 SizedBox(
@@ -81,9 +80,7 @@ class UploadIdCardBody extends StatelessWidget {
                 ),
                 CustomTextFieldInside(
                   makeActive: false,
-                  textEditingController:
-                      BlocProvider.of<UploadIdCardCubit>(context)
-                          .nationalIdcontroller,
+                  textEditingController: cubit.nationalIdcontroller,
                   title: "National ID",
                 ),
                 SizedBox(
@@ -91,9 +88,7 @@ class UploadIdCardBody extends StatelessWidget {
                 ),
                 CustomTextFieldInside(
                   makeActive: false,
-                  textEditingController:
-                      BlocProvider.of<UploadIdCardCubit>(context)
-                          .addresscontroller,
+                  textEditingController: cubit.addresscontroller,
                   title: "Address",
                 ),
                 SizedBox(
@@ -102,6 +97,34 @@ class UploadIdCardBody extends StatelessWidget {
                 CustomProfileButton(
                   title: "next",
                   color: ksecondaryColor,
+                  onTap: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setString(
+                        AppPrefsHelper.keyFirstName,
+                        BlocProvider.of<UploadIdCardCubit>(context)
+                            .firstNamecontroller
+                            .text);
+                    await prefs.setString(
+                        AppPrefsHelper.keyLastName,
+                        BlocProvider.of<UploadIdCardCubit>(context)
+                            .lastNamecontroller
+                            .text);
+                    await prefs.setString(
+                        AppPrefsHelper.keyNationalId,
+                        BlocProvider.of<UploadIdCardCubit>(context)
+                            .nationalIdcontroller
+                            .text);
+                    await prefs.setString(
+                        AppPrefsHelper.keyAddress,
+                        BlocProvider.of<UploadIdCardCubit>(context)
+                            .addresscontroller
+                            .text);
+                    if (await prefs.getString("role") == "Students") {
+                      GoRouter.of(context).go(AppRouter.chooseUniverstiyView);
+                    } else {
+                      GoRouter.of(context).go(AppRouter.propertyManagementView);
+                    }
+                  },
                 ),
               ],
             ),

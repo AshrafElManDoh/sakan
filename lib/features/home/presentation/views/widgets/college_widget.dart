@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sakan/core/utils/app_prefs_helper.dart';
 import 'package:sakan/core/utils/app_router.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/features/home/data/models/college_model/college_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CollegeWidget extends StatelessWidget {
   const CollegeWidget({
@@ -14,7 +16,9 @@ class CollegeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(AppPrefsHelper.keyCollege, college.name!);
         GoRouter.of(context).go(AppRouter.homeView);
       },
       child: Container(

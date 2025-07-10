@@ -21,6 +21,7 @@ class ChooseUniversityBody extends StatelessWidget {
             height: 64,
           ),
           CustomSearchField(
+            hintText: "Enter your university",
             onChanged: (value) {
               BlocProvider.of<GetUniversitiesCubit>(context)
                   .filterUniversities(query: value);

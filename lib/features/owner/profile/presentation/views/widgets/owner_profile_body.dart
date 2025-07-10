@@ -1,83 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:sakan/core/widgets/custom_profile_button.dart';
-// import 'package:sakan/features/home/presentation/views/widgets/custom_choose_text.dart';
-// import 'package:sakan/features/profile/presentation/views/widgets/custom_drop_down_form_field.dart';
-// import 'package:sakan/features/profile/presentation/views/widgets/custom_profile_text_field.dart';
-// import 'package:sakan/features/profile/presentation/views/widgets/custom_user_info.dart';
-
-// class ProfileBody extends StatelessWidget {
-//   const ProfileBody({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 16),
-//       child: SingleChildScrollView(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             SizedBox(height: 32),
-//             CustomUserInfo(name: "test",email: "test",),
-//             SizedBox(
-//               height: 32,
-//             ),
-//             CustomChooseText(text: "Basic Info"),
-//             SizedBox(
-//               height: 16,
-//             ),
-//             Row(
-//               children: [
-//                 Expanded(
-//                   child: CustomProfileTextField(title: "First Name"),
-//                 ),
-//                 SizedBox(
-//                   width: 10,
-//                 ),
-//                 Expanded(
-//                   child: CustomProfileTextField(title: "Last Name"),
-//                 )
-//               ],
-//             ),
-//             SizedBox(
-//               height: 16,
-//             ),
-//             CustomDropDownFormField(),
-//             SizedBox(
-//               height: 16,
-//             ),
-//             CustomProfileTextField(title: "Email"),
-//             SizedBox(
-//               height: 16,
-//             ),
-//             CustomProfileTextField(title: "Phone Number"),
-//             SizedBox(
-//               height: 16,
-//             ),
-//             CustomProfileTextField(title: "University"),
-//             SizedBox(
-//               height: 16,
-//             ),
-//             CustomProfileTextField(title: "College"),
-//             SizedBox(
-//               height: 32,
-//             ),
-//             // CustomChooseText(text: "Additional Details"),
-//             Align(
-//               child: CustomProfileButton(
-//                 title: "Delete Account",
-//                 color: Color(0xffAA2117),
-//               ),
-//             ),
-//             SizedBox(
-//               height: 32,
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sakan/constants.dart';
@@ -89,13 +9,13 @@ import 'package:sakan/features/profile/presentation/views/widgets/custom_profile
 import 'package:sakan/features/profile/presentation/views/widgets/custom_user_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileBody extends StatefulWidget {
-  const ProfileBody({
+class OwnerProfileBody extends StatefulWidget {
+  const OwnerProfileBody({
     super.key,
   });
 
   @override
-  State<ProfileBody> createState() => _ProfileBodyState();
+  State<OwnerProfileBody> createState() => _OwnerProfileBodyState();
 }
 
 // class _OwnerProfileBodyState extends State<OwnerProfileBody> {
@@ -237,16 +157,14 @@ class ProfileBody extends StatefulWidget {
 //   }
 // }
 
-class _ProfileBodyState extends State<ProfileBody> {
+class _OwnerProfileBodyState extends State<OwnerProfileBody> {
   late TextEditingController firstNamecontroller;
   late TextEditingController lastNamecontroller;
   late TextEditingController nIdcontroller;
   late TextEditingController addresscontroller;
   late TextEditingController emailcontroller;
   late TextEditingController phoneNumbercontroller;
-  late TextEditingController universitycontroller;
-  late TextEditingController collegecontroller;
-  late String fullName = "Name";
+  late String fullName="Name";
 
   @override
   void initState() {
@@ -257,18 +175,13 @@ class _ProfileBodyState extends State<ProfileBody> {
     addresscontroller = TextEditingController();
     emailcontroller = TextEditingController();
     phoneNumbercontroller = TextEditingController();
-    universitycontroller = TextEditingController();
-    collegecontroller = TextEditingController();
     _loadUserInfo();
   }
 
   Future<void> _loadUserInfo() async {
     final data = await AppPrefsHelper.loadUserInfo();
     final prefs = await SharedPreferences.getInstance();
-    fullName = (await prefs.getString(AppPrefsHelper.keyfullName)) ?? "Name";
-    universitycontroller.text =
-        await prefs.getString(AppPrefsHelper.keyUniversity)!;
-    collegecontroller.text = await prefs.getString(AppPrefsHelper.keyCollege)!;
+    fullName = (await prefs.getString(AppPrefsHelper.keyfullName))?? "Name";
     setState(() {
       firstNamecontroller.text = data[AppPrefsHelper.keyFirstName]!.isNotEmpty
           ? data['firstName']!
@@ -283,9 +196,7 @@ class _ProfileBodyState extends State<ProfileBody> {
       addresscontroller.text =
           data[AppPrefsHelper.keyAddress]!.isNotEmpty ? data['address']! : "";
       phoneNumbercontroller.text =
-          data[AppPrefsHelper.keyphoneNumber]!.isNotEmpty
-              ? data['phoneNumber']!
-              : "";
+          data[AppPrefsHelper.keyphoneNumber]!.isNotEmpty ? data['phoneNumber']! : "";
     });
   }
 
@@ -296,8 +207,6 @@ class _ProfileBodyState extends State<ProfileBody> {
     nIdcontroller.dispose();
     addresscontroller.dispose();
     emailcontroller.dispose();
-    universitycontroller.dispose();
-    collegecontroller.dispose();
     super.dispose();
   }
 
@@ -346,16 +255,6 @@ class _ProfileBodyState extends State<ProfileBody> {
               title: "Address",
               controller: addresscontroller,
             ),
-            const SizedBox(height: 16),
-            CustomProfileTextField(
-              title: "University",
-              controller: universitycontroller,
-            ),
-            const SizedBox(height: 16),
-            CustomProfileTextField(
-              title: "University",
-              controller: collegecontroller,
-            ),
             const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -369,7 +268,6 @@ class _ProfileBodyState extends State<ProfileBody> {
                   title: "Update Account",
                   color: ksecondaryColor,
                   onTap: () async {
-                    final prefs = await SharedPreferences.getInstance();
                     await AppPrefsHelper.saveUserInfo(
                         firstName: firstNamecontroller.text,
                         lastName: lastNamecontroller.text,
@@ -377,10 +275,6 @@ class _ProfileBodyState extends State<ProfileBody> {
                         nationalId: nIdcontroller.text,
                         address: addresscontroller.text,
                         phoneNumber: phoneNumbercontroller.text);
-                    await prefs.setString(AppPrefsHelper.keyUniversity,
-                        universitycontroller.text);
-                    await prefs.setString(
-                        AppPrefsHelper.keyCollege, collegecontroller.text);
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -397,11 +291,8 @@ class _ProfileBodyState extends State<ProfileBody> {
               child: CustomProfileButton(
                 title: "Log out",
                 color: kPrimaryColor,
-                onTap: () async {
-                  final prefs = await SharedPreferences.getInstance();
+                onTap: () {
                   AppPrefsHelper.clearUserInfo();
-                  await prefs.remove(AppPrefsHelper.keyUniversity);
-                  await prefs.remove(AppPrefsHelper.keyCollege);
                   GoRouter.of(context).go(AppRouter.studentOrOwner);
                 },
               ),

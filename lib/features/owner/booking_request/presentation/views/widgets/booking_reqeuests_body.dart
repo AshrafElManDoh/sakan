@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:sakan/core/utils/app_prefs_helper.dart';
 import 'package:sakan/core/utils/app_styles.dart';
 import 'package:sakan/features/owner/booking_request/presentation/views/widgets/request_table.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/widgets/property_container_header.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class BookingReqeuestsBody extends StatelessWidget {
+class BookingReqeuestsBody extends StatefulWidget {
   const BookingReqeuestsBody({super.key});
+
+  @override
+  State<BookingReqeuestsBody> createState() => _BookingReqeuestsBodyState();
+}
+
+class _BookingReqeuestsBodyState extends State<BookingReqeuestsBody> {
+  late String name = "";
+  @override
+  void initState() {
+    getName();
+    super.initState();
+  }
+
+  getName() async {
+    final prefs = await SharedPreferences.getInstance();
+    name = await prefs.getString(AppPrefsHelper.keyfullName) ?? "";
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +37,7 @@ class BookingReqeuestsBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Welcome back, Pedro Sevila ",
+                  "Welcome , $name ",
                   style: AppStyles.stylesSemiBold20,
                 ),
                 SizedBox(

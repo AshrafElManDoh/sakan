@@ -23,6 +23,7 @@ import 'package:sakan/features/introduction/presentation/views/introduction_view
 import 'package:sakan/features/map/presentation/views/map_view.dart';
 import 'package:sakan/features/owner/booking_request/presentation/views/booking_requests_view.dart';
 import 'package:sakan/features/owner/dashboard/presentation/views/dashboard_view.dart';
+import 'package:sakan/features/owner/profile/presentation/views/owner_profile_view.dart';
 import 'package:sakan/features/owner/property_management/data/repos/property_manage_repo_imp.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/add_apartment_view.dart';
 import 'package:sakan/features/owner/property_management/presentation/views/property_management_view.dart';
@@ -66,7 +67,7 @@ abstract class AppRouter {
   static const addRoomView = 'addRoom';
 
   static final router = GoRouter(
-    initialLocation: homeView,
+    initialLocation: studentOrOwner,
     routes: [
       // ✅ ShellRoute for pages with BottomNavigationBar
       ShellRoute(
@@ -173,7 +174,7 @@ abstract class AppRouter {
             GoRoute(
               path: ownerProfileView,
               pageBuilder: (context, state) => NoTransitionPage(
-                child: ProfileView(),
+                child: OwnerProfileView(),
               ),
             ),
           ]),

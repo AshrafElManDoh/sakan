@@ -18,12 +18,13 @@ class ChooseCollegeBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomChooseText(
-            text: "Choose Your Destination City",
+            text: "Choose Your college",
           ),
           SizedBox(
             height: 64,
           ),
           CustomSearchField(
+            hintText: "Enter your college",
             onChanged: (value) {
               BlocProvider.of<GetCollegesCubit>(context)
                   .filterColleges(query: value);

@@ -6,8 +6,10 @@ class CustomProfileTextField extends StatelessWidget {
   const CustomProfileTextField({
     super.key,
     required this.title,
+    this.controller,
   });
   final String title;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,6 +20,7 @@ class CustomProfileTextField extends StatelessWidget {
           height: 6,
         ),
         TextFormField(
+          controller: controller,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,

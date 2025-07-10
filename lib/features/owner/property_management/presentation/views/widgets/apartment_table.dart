@@ -28,15 +28,21 @@ class ApartmentTable extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      'assets/icon/apartment.png',
+                    child: Image.network(
+                      apartments[index].imagePaths![0],
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Image.asset(
+                        "assets/icon/apartment.png",
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text('Apartment ${index + 1}'),
+                  Text('${apartments[index].titledto} ${index + 1}'),
                 ],
               )),
               // DataCell(_buildStatusBadge(index)),
