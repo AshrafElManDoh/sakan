@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sakan/core/utils/location_service.dart';
 
 class MapBody extends StatefulWidget {
-  const MapBody({super.key});
+  final double? latitude;
+  final double? longitude;
+
+  const MapBody({super.key, this.latitude, this.longitude});
 
   @override
   State<MapBody> createState() => _MapBodyState();
@@ -11,11 +15,19 @@ class MapBody extends StatefulWidget {
 class _MapBodyState extends State<MapBody> {
   late GoogleMapController googleMapController;
   late CameraPosition initCameraPosition;
+  late LocationService locationService;
+  Set<Marker> markers = {};
 
   @override
   void initState() {
-    initCameraPosition = CameraPosition(target: LatLng(31, 41), zoom: 13);
     super.initState();
+    locationService = LocationService();
+    initCameraPosition = CameraPosition(
+      target: widget.latitude != null && widget.longitude != null
+          ? LatLng(widget.latitude!, widget.longitude!)
+          : const LatLng(31.04268759549466, 31.35816661637377),
+      zoom: 16,
+    );
   }
 
   @override
@@ -26,28 +38,39 @@ class _MapBodyState extends State<MapBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      GoogleMap(
-        initialCameraPosition: initCameraPosition,
-        onMapCreated: (controller) {
-          googleMapController = controller;
-        },
-      ),
-      Positioned(
-        bottom: 20,
-        right: 14,
-        left: 14,
-        child: ElevatedButton(
-          onPressed: () {
-            googleMapController.animateCamera(
-              CameraUpdate.newLatLng(
-                LatLng(31.041386149999987, 31.379063099640685),
-              ),
-            );
-          },
-          child: Text("Another location"),
-        ),
-      )
-    ]);
+    return GoogleMap(
+      initialCameraPosition: initCameraPosition,
+      myLocationEnabled: widget.latitude == null, 
+      myLocationButtonEnabled: true,
+      onMapCreated: (controller) async {
+        googleMapController = controller;
+        if (widget.latitude != null && widget.longitude != null) {
+          // show marker at apartment location
+          markers.add(Marker(
+            markerId: const MarkerId("apartment"),
+            position: LatLng(widget.latitude!, widget.longitude!),
+          ));
+          setState(() {});
+        } else {
+          await updateCurrentLocation(); // user's location
+        }
+      },
+      markers: markers,
+    );
+  }
+
+  Future<void> updateCurrentLocation() async {
+    try {
+      final locationData = await locationService.getMyLocation();
+      final currentPosition = CameraPosition(
+        target: LatLng(locationData.latitude!, locationData.longitude!),
+        zoom: 16,
+      );
+      await googleMapController.animateCamera(
+        CameraUpdate.newCameraPosition(currentPosition),
+      );
+    } catch (e) {
+      print("Error fetching location: $e");
+    }
   }
 }

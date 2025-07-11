@@ -8,6 +8,7 @@ import 'package:sakan/features/authentication/presentation/views/reset_password_
 import 'package:sakan/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:sakan/features/authentication/presentation/views/student_or_owner_view.dart';
 import 'package:sakan/features/authentication/presentation/views/upload_id_card_view.dart';
+import 'package:sakan/features/chat_bot/presentation/views/chat_bot_view.dart';
 import 'package:sakan/features/home/data/models/apartment_model/apartment_model.dart';
 import 'package:sakan/features/home/data/models/room_model/room_model.dart';
 import 'package:sakan/features/home/data/repos/home_repo_imp.dart';
@@ -45,6 +46,7 @@ abstract class AppRouter {
   static const chooseCollegeView = '/chooseCityView';
   static const chooseUniverstiyView = '/chooseUniverstiyView';
   static const uploadIdCardView = '/uploadIdCardView';
+  static const chatBotView = '/chatBot';
 
   // ShellRoute paths
   static const homeView = '/home';
@@ -67,7 +69,7 @@ abstract class AppRouter {
   static const addRoomView = 'addRoom';
 
   static final router = GoRouter(
-    initialLocation: studentOrOwner,
+    initialLocation: homeView,
     routes: [
       // ✅ ShellRoute for pages with BottomNavigationBar
       ShellRoute(
@@ -108,9 +110,22 @@ abstract class AppRouter {
             ],
           ),
           GoRoute(
-            path: mapView,
+            path: AppRouter.mapView,
+            pageBuilder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+
+              final latitude = extra?['latitude'] as double?;
+              final longitude = extra?['longitude'] as double?;
+
+              return NoTransitionPage(
+                child: MapView(latitude: latitude, longitude: longitude),
+              );
+            },
+          ),
+          GoRoute(
+            path: chatBotView,
             pageBuilder: (context, state) =>
-                const NoTransitionPage(child: MapView()),
+                const NoTransitionPage(child: ChatBotView()),
           ),
           GoRoute(
             path: searchView,

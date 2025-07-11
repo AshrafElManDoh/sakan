@@ -13,10 +13,12 @@ class MainView extends StatelessWidget {
     int currentIndex = 0;
     if (location.startsWith(AppRouter.mapView)) {
       currentIndex = 1;
-    } else if (location.startsWith(AppRouter.searchView)) {
+    } else if (location.startsWith(AppRouter.chatBotView)) {
       currentIndex = 2;
-    } else if (location.startsWith(AppRouter.profileView)) {
+    } else if (location.startsWith(AppRouter.searchView)) {
       currentIndex = 3;
+    } else if (location.startsWith(AppRouter.profileView)) {
+      currentIndex = 4;
     }
 
     return Scaffold(
@@ -32,9 +34,12 @@ class MainView extends StatelessWidget {
               context.go(AppRouter.mapView);
               break;
             case 2:
-              context.go(AppRouter.searchView);
+              context.go(AppRouter.chatBotView);
               break;
             case 3:
+              context.go(AppRouter.searchView);
+              break;
+            case 4:
               context.go(AppRouter.profileView);
               break;
           }

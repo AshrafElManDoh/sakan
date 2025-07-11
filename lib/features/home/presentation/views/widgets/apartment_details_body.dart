@@ -63,6 +63,8 @@ class ApartmentDetailsBody extends StatelessWidget {
                 // ),
                 LocationWidget(
                   location: apartmentModel.locationdto!,
+                  latitude: apartmentModel.latitudedto!,
+                  longitude: apartmentModel.longitudedto!,
                 ),
                 SizedBox(
                   height: 16,
