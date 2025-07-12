@@ -19,11 +19,10 @@ class PropertyManageBody extends StatefulWidget {
 }
 
 class _PropertyManageBodyState extends State<PropertyManageBody> {
-  late int ownerId;
   late String name="";
   @override
   void initState() {
-    ownerId = BlocProvider.of<PropertyManageCubit>(context).comingOwnerId = 2;
+    BlocProvider.of<PropertyManageCubit>(context).comingOwnerId = 8;
     getName();
     BlocProvider.of<PropertyManageCubit>(context).getApartments();
     super.initState();

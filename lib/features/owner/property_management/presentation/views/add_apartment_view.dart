@@ -6,7 +6,8 @@ import 'package:sakan/features/owner/property_management/presentation/views/widg
 import 'package:sakan/features/owner/property_management/presentation/views_model/add_apartment_cubit/add_apartment_cubit.dart';
 
 class AddApartmentView extends StatelessWidget {
-  const AddApartmentView({super.key});
+  const AddApartmentView({super.key, required this.ownerId});
+  final int ownerId ;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class AddApartmentView extends StatelessWidget {
       body: BlocProvider(
         create: (context) =>
             AddApartmentCubit(getIt.get<PropertyManageRepoImp>()),
-        child: AddApartmentBody(),
+        child: AddApartmentBody(ownerId: ownerId,),
       ),
     );
   }

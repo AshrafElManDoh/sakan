@@ -42,7 +42,7 @@ class ApartmentTable extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text('${apartments[index].titledto} ${index + 1}'),
+                  Text('${apartments[index].titledto} (${index + 1})'),
                 ],
               )),
               // DataCell(_buildStatusBadge(index)),

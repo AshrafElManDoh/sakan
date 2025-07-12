@@ -1,3 +1,4 @@
+import 'package:sakan/core/utils/app_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPrefsHelper {
@@ -10,6 +11,7 @@ class AppPrefsHelper {
   static const keyphoneNumber = 'phoneNumber';
   static const keyUniversity = 'university';
   static const keyCollege = 'college';
+  static const keyIsFirstTime = 'isFirstTime';
 
   /// Save user info
   static Future<void> saveUserInfo({
@@ -29,7 +31,18 @@ class AppPrefsHelper {
     await prefs.setString(keyphoneNumber, phoneNumber);
   }
 
-  /// Load user info
+  static Future<String> getInitialRoute() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isFirstTime = prefs.getBool(keyIsFirstTime) ?? true;
+
+    if (isFirstTime) {
+      await prefs.setBool(keyIsFirstTime, false);
+      return AppRouter.introductionView;
+    } else {
+      return AppRouter.studentOrOwner;
+    }
+  }
+
   static Future<Map<String, String>> loadUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
     return {

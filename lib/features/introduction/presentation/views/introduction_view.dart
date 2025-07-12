@@ -48,7 +48,7 @@ class IntroductionView extends StatelessWidget {
                 fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           onDone: () {
-            GoRouter.of(context).pushReplacement(AppRouter.studentOrOwner);
+            GoRouter.of(context).go(AppRouter.studentOrOwner);
           },
           dotsDecorator: DotsDecorator(
             size: Size(10, 5),

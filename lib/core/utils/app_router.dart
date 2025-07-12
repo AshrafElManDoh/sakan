@@ -68,179 +68,361 @@ abstract class AppRouter {
   static const editRoomView = 'editRoom';
   static const addRoomView = 'addRoom';
 
-  static final router = GoRouter(
-    initialLocation: homeView,
-    routes: [
-      // ✅ ShellRoute for pages with BottomNavigationBar
-      ShellRoute(
-        builder: (context, state, child) => MainView(child: child),
-        routes: [
-          GoRoute(
-            path: homeView,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: HomeView()),
-            routes: [
-              GoRoute(
-                path: AppRouter.apartmentDetailsView,
-                builder: (context, state) {
-                  final apartmentModel = state.extra as ApartmentModel;
-                  return BlocProvider(
-                    create: (context) {
-                      final cubit = GetRoomsCubit(getIt.get<HomeRepoImp>());
-                      cubit.id = apartmentModel.id;
-                      cubit.getRooms();
-                      return cubit;
-                    },
-                    child: ApartmentDetailsView(apartmentModel: apartmentModel),
-                  );
-                },
-                routes: [
-                  GoRoute(
-                    path: AppRouter.roomDetailsView,
-                    builder: (context, state) => BlocProvider(
-                      create: (context) =>
-                          GetAiInformationCubit(getIt.get<HomeRepoImp>()),
-                      child: RoomDetailsView(
-                        roomModel: state.extra as RoomModel,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          GoRoute(
-            path: AppRouter.mapView,
-            pageBuilder: (context, state) {
-              final extra = state.extra as Map<String, dynamic>?;
-
-              final latitude = extra?['latitude'] as double?;
-              final longitude = extra?['longitude'] as double?;
-
-              return NoTransitionPage(
-                child: MapView(latitude: latitude, longitude: longitude),
-              );
-            },
-          ),
-          GoRoute(
-            path: chatBotView,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: ChatBotView()),
-          ),
-          GoRoute(
-            path: searchView,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: SearchView()),
-          ),
-          GoRoute(
-            path: profileView,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: ProfileView()),
-          ),
-        ],
-      ),
-      // ShellRoute for owner
-      ShellRoute(
-          builder: (context, state, child) => DashboardView(child: child),
+  static GoRouter routerWithInitialRoute(String initialRoute) {
+    return GoRouter(
+      initialLocation: initialRoute,
+      routes: [
+        // ✅ ShellRoute for pages with BottomNavigationBar
+        ShellRoute(
+          builder: (context, state, child) => MainView(child: child),
           routes: [
             GoRoute(
-                path: propertyManagementView,
-                pageBuilder: (context, state) => NoTransitionPage(
-                      child: BlocProvider(
-                        create: (context) => PropertyManageCubit(
-                            getIt.get<PropertyManageRepoImp>()),
-                        child: PropertyManagementView(),
+              path: homeView,
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: HomeView()),
+              routes: [
+                GoRoute(
+                  path: AppRouter.apartmentDetailsView,
+                  builder: (context, state) {
+                    final apartmentModel = state.extra as ApartmentModel;
+                    return BlocProvider(
+                      create: (context) {
+                        final cubit = GetRoomsCubit(getIt.get<HomeRepoImp>());
+                        cubit.id = apartmentModel.id;
+                        cubit.getRooms();
+                        return cubit;
+                      },
+                      child:
+                          ApartmentDetailsView(apartmentModel: apartmentModel),
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: AppRouter.roomDetailsView,
+                      builder: (context, state) => BlocProvider(
+                        create: (context) =>
+                            GetAiInformationCubit(getIt.get<HomeRepoImp>()),
+                        child: RoomDetailsView(
+                          roomModel: state.extra as RoomModel,
+                        ),
                       ),
                     ),
-                routes: [
-                  GoRoute(
-                    path: addApartmentView,
-                    builder: (context, state) => AddApartmentView(),
-                  ),
-                  GoRoute(
-                    path: editApartmentView,
-                    builder: (context, state) => EditApartmentView(
-                      apartmentModel: state.extra as ApartmentModel,
-                    ),
-                  ),
-                  GoRoute(
-                    path: editRoomView,
-                    builder: (context, state) {
-                      final extra = state.extra as Map<String, dynamic>;
-                      final roomModel = extra["room"] as RoomModel;
-                      final ownerId = extra["ownerId"] as int;
-                      return EditRoomView(
-                          roomModel: roomModel, ownerid: ownerId);
-                    },
-                  ),
-                  GoRoute(
-                    path: addRoomView,
-                    builder: (context, state) => AddRoomView(
-                      ownerId: state.extra as int,
-                    ),
-                  ),
-                ]),
-            GoRoute(
-              path: bookingRequestsView,
-              pageBuilder: (context, state) => NoTransitionPage(
-                child: BookingRequestsView(),
-              ),
+                  ],
+                ),
+              ],
             ),
             GoRoute(
-              path: ownerProfileView,
-              pageBuilder: (context, state) => NoTransitionPage(
-                child: OwnerProfileView(),
-              ),
-            ),
-          ]),
+              path: AppRouter.mapView,
+              pageBuilder: (context, state) {
+                final extra = state.extra as Map<String, dynamic>?;
 
-      // ✅ Other routes outside BottomNavigationBar layout
-      GoRoute(
-        path: studentOrOwner,
-        builder: (context, state) => const StudentOrOwnerView(),
-      ),
-      GoRoute(
-        path: introductionView,
-        builder: (context, state) => const IntroductionView(),
-      ),
-      GoRoute(
-        path: signUpView,
-        builder: (context, state) => SignUpView(
-          role: state.extra as String,
+                final latitude = extra?['latitude'] as double?;
+                final longitude = extra?['longitude'] as double?;
+
+                return NoTransitionPage(
+                  child: MapView(latitude: latitude, longitude: longitude),
+                );
+              },
+            ),
+            GoRoute(
+              path: chatBotView,
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: ChatBotView()),
+            ),
+            GoRoute(
+              path: searchView,
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: SearchView()),
+            ),
+            GoRoute(
+              path: profileView,
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: ProfileView()),
+            ),
+          ],
         ),
-      ),
-      GoRoute(
-        path: loginView,
-        builder: (context, state) => const LoginView(),
-      ),
-      GoRoute(
-        path: forgetPasswordView,
-        builder: (context, state) => const ForgetPasswordView(),
-      ),
-      GoRoute(
-        path: otpView,
-        builder: (context, state) => const OtpView(),
-      ),
-      GoRoute(
-        path: resetPasswordView,
-        builder: (context, state) => ResetPasswordView(
-          email: state.extra as String,
+        // ShellRoute for owner
+        ShellRoute(
+            builder: (context, state, child) => DashboardView(child: child),
+            routes: [
+              GoRoute(
+                  path: propertyManagementView,
+                  pageBuilder: (context, state) => NoTransitionPage(
+                        child: BlocProvider(
+                          create: (context) => PropertyManageCubit(
+                              getIt.get<PropertyManageRepoImp>()),
+                          child: PropertyManagementView(),
+                        ),
+                      ),
+                  routes: [
+                    GoRoute(
+                      path: addApartmentView,
+                      builder: (context, state) => AddApartmentView(
+                        ownerId: state.extra as int,
+                      ),
+                    ),
+                    GoRoute(
+                      path: editApartmentView,
+                      builder: (context, state) => EditApartmentView(
+                        apartmentModel: state.extra as ApartmentModel,
+                      ),
+                    ),
+                    GoRoute(
+                      path: editRoomView,
+                      builder: (context, state) {
+                        final extra = state.extra as Map<String, dynamic>;
+                        final roomModel = extra["room"] as RoomModel;
+                        final ownerId = extra["ownerId"] as int;
+                        return EditRoomView(
+                            roomModel: roomModel, ownerid: ownerId);
+                      },
+                    ),
+                    GoRoute(
+                      path: addRoomView,
+                      builder: (context, state) => AddRoomView(
+                        ownerId: state.extra as int,
+                      ),
+                    ),
+                  ]),
+              GoRoute(
+                path: bookingRequestsView,
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: BookingRequestsView(),
+                ),
+              ),
+              GoRoute(
+                path: ownerProfileView,
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: OwnerProfileView(),
+                ),
+              ),
+            ]),
+
+        // ✅ Other routes outside BottomNavigationBar layout
+        GoRoute(
+          path: studentOrOwner,
+          builder: (context, state) => const StudentOrOwnerView(),
         ),
-      ),
-      GoRoute(
-        path: chooseCollegeView,
-        builder: (context, state) => ChooseCollegeView(
-          universityID: state.extra as int,
+        GoRoute(
+          path: introductionView,
+          builder: (context, state) => const IntroductionView(),
         ),
-      ),
-      GoRoute(
-        path: chooseUniverstiyView,
-        builder: (context, state) => const ChooseUniversityView(),
-      ),
-      GoRoute(
-        path: uploadIdCardView,
-        builder: (context, state) => const UploadIdCardView(),
-      ),
-    ],
-  );
+        GoRoute(
+          path: signUpView,
+          builder: (context, state) => SignUpView(
+            role: state.extra as String,
+          ),
+        ),
+        GoRoute(
+          path: loginView,
+          builder: (context, state) => const LoginView(),
+        ),
+        GoRoute(
+          path: forgetPasswordView,
+          builder: (context, state) => const ForgetPasswordView(),
+        ),
+        GoRoute(
+          path: otpView,
+          builder: (context, state) => const OtpView(),
+        ),
+        GoRoute(
+          path: resetPasswordView,
+          builder: (context, state) => ResetPasswordView(
+            email: state.extra as String,
+          ),
+        ),
+        GoRoute(
+          path: chooseCollegeView,
+          builder: (context, state) => ChooseCollegeView(
+            universityID: state.extra as int,
+          ),
+        ),
+        GoRoute(
+          path: chooseUniverstiyView,
+          builder: (context, state) => const ChooseUniversityView(),
+        ),
+        GoRoute(
+          path: uploadIdCardView,
+          builder: (context, state) => const UploadIdCardView(),
+        ),
+      ],
+    );
+  }
 }
+
+//   static final router = GoRouter(
+//     initialLocation: introductionView,
+//     routes: [
+//       // ✅ ShellRoute for pages with BottomNavigationBar
+//       ShellRoute(
+//         builder: (context, state, child) => MainView(child: child),
+//         routes: [
+//           GoRoute(
+//             path: homeView,
+//             pageBuilder: (context, state) =>
+//                 const NoTransitionPage(child: HomeView()),
+//             routes: [
+//               GoRoute(
+//                 path: AppRouter.apartmentDetailsView,
+//                 builder: (context, state) {
+//                   final apartmentModel = state.extra as ApartmentModel;
+//                   return BlocProvider(
+//                     create: (context) {
+//                       final cubit = GetRoomsCubit(getIt.get<HomeRepoImp>());
+//                       cubit.id = apartmentModel.id;
+//                       cubit.getRooms();
+//                       return cubit;
+//                     },
+//                     child: ApartmentDetailsView(apartmentModel: apartmentModel),
+//                   );
+//                 },
+//                 routes: [
+//                   GoRoute(
+//                     path: AppRouter.roomDetailsView,
+//                     builder: (context, state) => BlocProvider(
+//                       create: (context) =>
+//                           GetAiInformationCubit(getIt.get<HomeRepoImp>()),
+//                       child: RoomDetailsView(
+//                         roomModel: state.extra as RoomModel,
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//           GoRoute(
+//             path: AppRouter.mapView,
+//             pageBuilder: (context, state) {
+//               final extra = state.extra as Map<String, dynamic>?;
+
+//               final latitude = extra?['latitude'] as double?;
+//               final longitude = extra?['longitude'] as double?;
+
+//               return NoTransitionPage(
+//                 child: MapView(latitude: latitude, longitude: longitude),
+//               );
+//             },
+//           ),
+//           GoRoute(
+//             path: chatBotView,
+//             pageBuilder: (context, state) =>
+//                 const NoTransitionPage(child: ChatBotView()),
+//           ),
+//           GoRoute(
+//             path: searchView,
+//             pageBuilder: (context, state) =>
+//                 const NoTransitionPage(child: SearchView()),
+//           ),
+//           GoRoute(
+//             path: profileView,
+//             pageBuilder: (context, state) =>
+//                 const NoTransitionPage(child: ProfileView()),
+//           ),
+//         ],
+//       ),
+//       // ShellRoute for owner
+//       ShellRoute(
+//           builder: (context, state, child) => DashboardView(child: child),
+//           routes: [
+//             GoRoute(
+//                 path: propertyManagementView,
+//                 pageBuilder: (context, state) => NoTransitionPage(
+//                       child: BlocProvider(
+//                         create: (context) => PropertyManageCubit(
+//                             getIt.get<PropertyManageRepoImp>()),
+//                         child: PropertyManagementView(),
+//                       ),
+//                     ),
+//                 routes: [
+//                   GoRoute(
+//                     path: addApartmentView,
+//                     builder: (context, state) => AddApartmentView(),
+//                   ),
+//                   GoRoute(
+//                     path: editApartmentView,
+//                     builder: (context, state) => EditApartmentView(
+//                       apartmentModel: state.extra as ApartmentModel,
+//                     ),
+//                   ),
+//                   GoRoute(
+//                     path: editRoomView,
+//                     builder: (context, state) {
+//                       final extra = state.extra as Map<String, dynamic>;
+//                       final roomModel = extra["room"] as RoomModel;
+//                       final ownerId = extra["ownerId"] as int;
+//                       return EditRoomView(
+//                           roomModel: roomModel, ownerid: ownerId);
+//                     },
+//                   ),
+//                   GoRoute(
+//                     path: addRoomView,
+//                     builder: (context, state) => AddRoomView(
+//                       ownerId: state.extra as int,
+//                     ),
+//                   ),
+//                 ]),
+//             GoRoute(
+//               path: bookingRequestsView,
+//               pageBuilder: (context, state) => NoTransitionPage(
+//                 child: BookingRequestsView(),
+//               ),
+//             ),
+//             GoRoute(
+//               path: ownerProfileView,
+//               pageBuilder: (context, state) => NoTransitionPage(
+//                 child: OwnerProfileView(),
+//               ),
+//             ),
+//           ]),
+
+//       // ✅ Other routes outside BottomNavigationBar layout
+//       GoRoute(
+//         path: studentOrOwner,
+//         builder: (context, state) => const StudentOrOwnerView(),
+//       ),
+//       GoRoute(
+//         path: introductionView,
+//         builder: (context, state) => const IntroductionView(),
+//       ),
+//       GoRoute(
+//         path: signUpView,
+//         builder: (context, state) => SignUpView(
+//           role: state.extra as String,
+//         ),
+//       ),
+//       GoRoute(
+//         path: loginView,
+//         builder: (context, state) => const LoginView(),
+//       ),
+//       GoRoute(
+//         path: forgetPasswordView,
+//         builder: (context, state) => const ForgetPasswordView(),
+//       ),
+//       GoRoute(
+//         path: otpView,
+//         builder: (context, state) => const OtpView(),
+//       ),
+//       GoRoute(
+//         path: resetPasswordView,
+//         builder: (context, state) => ResetPasswordView(
+//           email: state.extra as String,
+//         ),
+//       ),
+//       GoRoute(
+//         path: chooseCollegeView,
+//         builder: (context, state) => ChooseCollegeView(
+//           universityID: state.extra as int,
+//         ),
+//       ),
+//       GoRoute(
+//         path: chooseUniverstiyView,
+//         builder: (context, state) => const ChooseUniversityView(),
+//       ),
+//       GoRoute(
+//         path: uploadIdCardView,
+//         builder: (context, state) => const UploadIdCardView(),
+//       ),
+//     ],
+//   );
+// }

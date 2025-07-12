@@ -13,7 +13,8 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AddApartmentBody extends StatelessWidget {
-  const AddApartmentBody({super.key});
+  const AddApartmentBody({super.key, required this.ownerId});
+  final int ownerId;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class AddApartmentBody extends StatelessWidget {
           showTopSnackBar(
               Overlay.of(context), CustomSnackBar.success(message: state.msg));
           Future.delayed(Duration(milliseconds: 500), () {
-            GoRouter.of(context).pop();
+            GoRouter.of(context).pop(true);
           });
         } else if (state is AddLocationSuccess) {
           showTopSnackBar(
@@ -164,7 +165,7 @@ class AddApartmentBody extends StatelessWidget {
                               BlocProvider.of<AddApartmentCubit>(context)
                                   .priceController
                                   .text),
-                          ownerID: 2,
+                          ownerID: ownerId,
                           description:
                               BlocProvider.of<AddApartmentCubit>(context)
                                   .descriptionController

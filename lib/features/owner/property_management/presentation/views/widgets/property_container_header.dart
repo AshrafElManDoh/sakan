@@ -20,9 +20,13 @@ class PropertyContainerHeader extends StatelessWidget {
             CustomProfileButton(
               title: "Add apartment",
               color: ksecondaryColor,
-              onTap: () {
-                context.push(
-                    '${AppRouter.propertyManagementView}/${AppRouter.addApartmentView}');
+              onTap: () async {
+                final result = await context.push<bool>(
+                    '${AppRouter.propertyManagementView}/${AppRouter.addApartmentView}',
+                    extra: context.read<PropertyManageCubit>().comingOwnerId);
+                if (result == true) {
+                  context.read<PropertyManageCubit>().getApartments();
+                }
               },
             ),
             CustomProfileButton(
